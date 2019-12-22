@@ -11,6 +11,9 @@ print('Start')
 print('')
 
 
+# Image delay
+image_delay = 3000
+
 # Set up current directory path
 currentDirectory = os.path.abspath(os.path.dirname(sys.argv[0])) 
 
@@ -50,7 +53,7 @@ try:
         cv2.imshow('Image', images[imageIndex])
         
         # Waiting 2 seconds and watching out for key press to quit
-        if cv2.waitKey(2000) == ord(' ') :
+        if cv2.waitKey(image_delay) == ord(' ') :
             break
 
 except Exception as e:
