@@ -1,0 +1,10 @@
+TODO:
+
+Options:
+    Time between images
+    Sounds
+    frames
+    Filters
+
+
+
