@@ -1,7 +1,7 @@
 # Picture-Frame
 Simple picture frame slideshow for linux setups
 
-### Remote Display over SSH
+### Setting Up Picture-Frame (Remote Deployment)
 1. ssh into remote linux device:
     - Linux: `ssh <username/login>@<IP address>`
     - Windows: `TODO`
@@ -29,3 +29,8 @@ Simple picture frame slideshow for linux setups
     - `(env) $ pip install -r requirements.txt`
 9. Run the program using python
     - `(env) $ python3 picture-frame.py`
+
+
+### Adding Images
+All images must be stored in the "Images" directory of this project.
+Note that subdirectories in the "Images" directory will not be considered.
