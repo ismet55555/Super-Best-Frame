@@ -5,7 +5,7 @@ Options:
     Sounds
     frames
     Filters
-
+    Text on screen
 
 Download images from google drive
 
