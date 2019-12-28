@@ -19,18 +19,17 @@ Simple picture frame slideshow for linux setups
     - `$ export DISPLAY=:0`
 5. Change directory into cloned directory:
     - `$ cd Picture-Frame`
-6. Create python virtual environment: 
-    - `$ python3 -m venv env`
-7. Activate the virtual environment: 
-    - `$ . env/bin/activate`
-8. Install OpenCV system dependencies:
-    - `(env) $ sudo apt install libatlas3-base libwebp6 libtiff5 libjasper1 libilmbase12 libopenexr22 libilmbase12 libgstreamer1.0-0 libavcodec57 libavformat57 libavutil55 libswscale4 libqtgui4 libqt4-test libqtcore4`
-8. Install all dependencies:
-    - `(env) $ pip install -r requirements.txt`
-9. Run the program using python
-    - `(env) $ python3 picture-frame.py`
+6. Run the start script
+    - `$ ./start.sh`
+
+NOTE: The `start.sh` script:
+    - Creates a virtual environment (`$ python3 -m venv env`)
+    - Activates the virtual environment (`$ . env/bin/activate`)
+    - Installs OpenCV system dependencies (`(env) $ sudo apt install <a few packages>`)
+    - Installs python package dependencies (`(env) $ pip install -r requirements.txt`)
+    - Runs the python script (``(env) $ python3 picture-frame.py`)
 
 
-### Adding Images
+### Adding Images to the `Images` directory
 All images must be stored in the "Images" directory of this project.
 Note that subdirectories in the "Images" directory will not be considered.
