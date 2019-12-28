@@ -9,7 +9,7 @@ Linux systems may include Raspian, Ubuntu, and/or Mint.
     - Linux: `ssh <username/login>@<IP address of picture frame computer>`
     - Windows: `TODO`
     - MAC: `TODO`
-2. Navigate into user download directory: 
+2. Navigate into user documents directory: 
     - `$ cd ~/Documents`
 3. *[If needed]* Install git:
     - `$ sudo apt install git-all`
