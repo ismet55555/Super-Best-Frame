@@ -1,11 +1,29 @@
 # Picture-Frame
 Simple picture frame slideshow for running on linux systems.  
-Linux systems may include Raspian, Ubuntu, and/or Mint.
+These linux systems may include Raspian, Ubuntu, Mint, or even WSL (Windows Subsystem for Linux).
+
+---
+## Compatibility
+
+### Minimum System Requirements
+The following are the minimum system requirments where this application will work smooth and as intendent.
+- CPU: 1.2 GHz
+- RAM: 1GB
+
+### Works Fine on the Following Systems:
+- Raspberry Pi 3b+ *(Raspbian)*
+- Raspberry Pi 4 *(Raspbian)*
+- Atomic Pi *(Lubuntu 18.04)*
+- Ubuntu 16.04 and up
+
+### Will Not Work on the Following Systems:
+- Raspberry Pi Zero W (Too Slow)
+
 
 ---
 
 ## Installing and Setting Up Picture-Frame
-1. *[If on remote computer]* `ssh` into remote linux device:
+1. *[If on remote computer]* Enter remote linux device using `ssh`:
     - Linux: `ssh <username/login>@<IP address of picture frame computer>`
     - Windows: `TODO`
     - MAC: `TODO`
