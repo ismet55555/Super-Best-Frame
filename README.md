@@ -18,13 +18,11 @@ Linux systems may include Raspian, Ubuntu, and/or Mint.
     - `$ git config --global user.email "<your_email@example.com>"`
 5. Clone git repo form github:
     - `$ git clone <copied ssh clone link>`
-6. Set system environmental variable so images apear on remote desktop:
-    - `$ export DISPLAY=:0`
-7. Install OpenCV system dependencies:
+6. Install OpenCV system dependencies:
     - `(env) $ sudo apt install libatlas3-base libwebp6 libtiff5 libjasper1 libilmbase12 libopenexr22 libilmbase12 libgstreamer1.0-0 libavcodec57 libavformat57 libavutil55 libswscale4 libqtgui4 libqt4-test libqtcore4`
-8. Change directory into cloned directory:
+7. Change directory into cloned directory:
     - `$ cd Picture-Frame`
-9. Run the start script
+8. Run the start script
     - `$ ./start.sh`
 
 **NOTE**: The `start.sh` script executes the following:
