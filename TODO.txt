@@ -12,4 +12,13 @@ Download images from google drive
 
 In README.md add how to start remotely with screen or nohub or whatever
 
+Need some type of config file to hold all options?
+
+Set up entire flask server with front end?
+    - Shows current photo displayed
+    - Shows type of transition
+    - Option to upload images
+
+
+
 
