@@ -15,7 +15,7 @@ then
         . env/bin/activate                      # Activate virtual enviroment
     else
         echo "[Picture-Frame] : Creating a virtual environment for application ..."
-        virtualenv -p python3 env               # Creating the virtual environment
+        python3 -m venv env               # Creating the virtual environment
         echo "[Picture-Frame] : Activating virtual enviroment ..."
         . env/bin/activate                      # Activate virtual enviroment
         echo "[Picture-Frame] : Installing all required python packages ..."
