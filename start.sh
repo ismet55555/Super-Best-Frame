@@ -22,6 +22,9 @@ then
         pip3 install -U -r requirements.txt     # Install all required packages for virtual environment
     fi
 
+    echo "[Picture-Frame] : Setting DISPLAY to 0 ..."
+    export DISPLAY=:0
+
     # Running the flask application
     echo "[Picture-Frame] : Starting application ..."
     echo
