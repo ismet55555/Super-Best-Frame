@@ -1,6 +1,6 @@
 # Picture-Frame
-Simple picture frame slideshow for running on linux systems.  
-These linux systems may include Raspian, Ubuntu, Mint, or even WSL (Windows Subsystem for Linux).
+Simple picture frame slideshow for running on linux systems.These linux systems may include Raspian, Ubuntu, Mint, or even WSL (Windows Subsystem for Linux).
+The slideshow is displayed on a connected display device / monitor in either horizontal (landscape) or vertical (portrait) orientation.
 
 ---
 ## Compatibility
