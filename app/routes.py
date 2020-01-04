@@ -13,6 +13,7 @@ import time
 import threading
 
 from app import api  # Import the app (Controller)
+from app import start_stop  # Starts and stops slideshow
 from app import slideshow  # Starts the main slideshow background thread
 from app import temp_data
 
@@ -31,45 +32,7 @@ base_dir = os.path.join(base_app_dir, '..')
 print(base_dir)
 
 
-# ================================================================================================
-
-
-def start_slideshow():
-    """
-    TODO
-    """
-    if not temp_data.slideshow_thread:
-        # lowering flag for thread to stop
-        temp_data.slideshow_thread_stop = False
-        # Creating the background thread for the slideshow
-        temp_data.slideshow_thread = threading.Thread(target=slideshow.slideshow_thread)
-        # Starting the slideshow
-        temp_data.slideshow_thread.start()
-        logging.info("Successfully started image slideshow (Thread: {})".format(temp_data.slideshow_thread.ident))
-        return True
-    else:
-        logging.critical("The picture-frame slideshow is already running (Thread: {})".format(temp_data.slideshow_thread.ident))
-        return False
-
-def stop_slideshow():
-    """
-    TODO
-    """
-    if temp_data.slideshow_thread:
-        # Raising flag for thread to stop
-        temp_data.slideshow_thread_stop = True
-        logging.info("Stopping active slideshow thread (Thread: {}) ...".format(temp_data.slideshow_thread.ident))
-        # Waiting for the thread to stop
-        temp_data.slideshow_thread.join()
-        temp_data.slideshow_thread = None
-        logging.info("Successfully stopped slideshow thread")
-        return True
-    else:
-        logging.critical("The picture-frame slideshow is currently not running")
-        return False
-
-
-# ================================================================================================
+###############################################################################
 
 @api.route('/')
 @api.route('/index', methods=['GET'])
@@ -83,28 +46,7 @@ def index():
     # Rendering index.html
     return render_template('index.html')
 
-# ================================================================================================
-
-@api.route('/stop', methods=['GET', 'POST'])
-def stop():
-    """
-    REST API endpoint to stop the image slideshow.
-    :return: json confirmation message
-    """
-    # Stopping slideshow
-    stop_slideshow()
-
-    success = True
-    message = 'TODO... stopped'
-
-    # Logging message
-    logging.info(message) if success else logging.error(message)
-    return jsonify({
-        'success': success,
-        'message': message
-    })
-
-# ================================================================================================
+###############################################################################
 
 @api.route('/start', methods=['GET', 'POST'])
 def start():
@@ -113,7 +55,7 @@ def start():
     :return: json confirmation message
     """
     # Starting the slideshow
-    start_slideshow()
+    start_stop.start_slideshow()
 
     success = True
     message = 'TODO... started'
@@ -125,8 +67,28 @@ def start():
         'message': message
     })
 
+###############################################################################
 
-# ================================================================================================
+@api.route('/stop', methods=['GET', 'POST'])
+def stop():
+    """
+    REST API endpoint to stop the image slideshow.
+    :return: json confirmation message
+    """
+    # Stopping slideshow
+    start_stop.stop_slideshow()
+
+    success = True
+    message = 'TODO... stopped'
+
+    # Logging message
+    logging.info(message) if success else logging.error(message)
+    return jsonify({
+        'success': success,
+        'message': message
+    })
+
+###############################################################################
 
 @api.route('/kill', methods=['GET', 'POST'])
 def kill():
@@ -174,7 +136,7 @@ def kill():
         'message': message
     })
 
-# ================================================================================================
+###############################################################################
 
 @api.errorhandler(404)
 def page_not_found(e):

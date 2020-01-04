@@ -12,7 +12,7 @@ import numpy as np
 from pprint import pprint  # For troubleshooting and debugging
 
 
-# =============================================================================================
+###############################################################################
 
 def effect_none(img_end):
     """

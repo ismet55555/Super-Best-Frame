@@ -14,6 +14,8 @@ from app import effects  # Image transition effects
 from app import utility  # Useful and custom functions
 
 
+###############################################################################
+
 def slideshow_thread():
     # Supported image file extensions
     # TODO: Load from app/config/img_formats.yml
