@@ -17,7 +17,7 @@ then
         echo "[Picture-Frame] : Activating virtual enviroment ..."
         . env/bin/activate                      # Activate virtual enviroment
     else
-        echo "[Picture-Frame] : Creating a virtual environment for application ..."
+        echo "[Picture-Frame] : Creating a virtual environment for web application ..."
         python3 -m venv env               # Creating the virtual environment
         echo "[Picture-Frame] : Activating virtual enviroment ..."
         . env/bin/activate                      # Activate virtual enviroment
@@ -29,11 +29,11 @@ then
     export DISPLAY=:0
 
     # Running the flask application
-    echo "[Picture-Frame] : Starting application ..."
+    echo "[Picture-Frame] : Starting web application ..."
     echo
-    python3 picture-frame.py
+    python3 main.py
     echo
-    echo "[Picture-Frame] : Application has stopped."
+    echo "[Picture-Frame] : Web application has stopped."
 else
     # Current directory is not correct
     echo
