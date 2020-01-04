@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # ---------------------------------------------------------
 # Initialization off all flask app components
 # ---------------------------------------------------------
@@ -17,6 +19,8 @@ api.config.from_object(Config)
 
 # Importing all custom code
 from app import routes  # Web application routes/endpoints
+from app import temp_data
 from app import effects  # Image transition effects
 from app import utility  # Useful and custom functions
 from app import slideshow  # main slideshow thread (runs in background)
+

@@ -8,14 +8,10 @@ import imutils
 from math import floor, ceil
 import numpy as np
 import logging
-import asyncio
 
-from flask import g
-
-from app import routes
+from app import temp_data
 from app import effects  # Image transition effects
 from app import utility  # Useful and custom functions
-
 
 
 def slideshow_thread():
@@ -85,7 +81,7 @@ def slideshow_thread():
     logging.info('Beginning picture frame image rotation. Use SPACEBAR to quit ...')
     error = None
     try:
-        while True and not routes.slideshow_thread_stop:
+        while True and not temp_data.slideshow_thread_stop:
             # Picking a random image from directory - Target
             random.seed()
             while img_end_index == img_begin_index:
@@ -148,6 +144,6 @@ def slideshow_thread():
         cv2.destroyWindow('Image')
         cv2.destroyAllWindows()
 
-        routes.slideshow_thread_stop = True
-        routes.slideshow_thread = None
+        temp_data.slideshow_thread_stop = True
+        temp_data.slideshow_thread = None
 

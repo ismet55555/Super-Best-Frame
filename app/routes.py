@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # ---------------------------------------------------------
 # Definition off all flask app endpoints/routes
 # ---------------------------------------------------------
@@ -12,6 +14,7 @@ import threading
 
 from app import api  # Import the app (Controller)
 from app import slideshow  # Starts the main slideshow background thread
+from app import temp_data
 
 from flask import flash, redirect, request, jsonify
 from flask import render_template  # Import the view renderer (View)
@@ -28,47 +31,37 @@ base_dir = os.path.join(base_app_dir, '..')
 print(base_dir)
 
 
-# Initiating slideshow thread reference
-slideshow_thread = None
-slideshow_thread_stop = True
-
-
 # ================================================================================================
+
 
 def start_slideshow():
     """
     TODO
     """
-    global slideshow_thread
-    global slideshow_thread_stop
-
-    if not slideshow_thread:
+    if not temp_data.slideshow_thread:
         # lowering flag for thread to stop
-        slideshow_thread_stop = False
+        temp_data.slideshow_thread_stop = False
         # Creating the background thread for the slideshow
-        slideshow_thread = threading.Thread(target=slideshow.slideshow_thread)
+        temp_data.slideshow_thread = threading.Thread(target=slideshow.slideshow_thread)
         # Starting the slideshow
-        slideshow_thread.start()
-        logging.info("Successfully started image slideshow (Thread: {})".format(slideshow_thread.ident))
+        temp_data.slideshow_thread.start()
+        logging.info("Successfully started image slideshow (Thread: {})".format(temp_data.slideshow_thread.ident))
         return True
     else:
-        logging.critical("The picture-frame slideshow is already running (Thread: {})".format(slideshow_thread.ident))
+        logging.critical("The picture-frame slideshow is already running (Thread: {})".format(temp_data.slideshow_thread.ident))
         return False
 
 def stop_slideshow():
     """
     TODO
     """
-    global slideshow_thread
-    global slideshow_thread_stop
-
-    if slideshow_thread:
+    if temp_data.slideshow_thread:
         # Raising flag for thread to stop
-        slideshow_thread_stop = True
-        logging.info("Stopping active slideshow thread (Thread: {}) ...".format(slideshow_thread.ident))
+        temp_data.slideshow_thread_stop = True
+        logging.info("Stopping active slideshow thread (Thread: {}) ...".format(temp_data.slideshow_thread.ident))
         # Waiting for the thread to stop
-        slideshow_thread.join()
-        slideshow_thread = None
+        temp_data.slideshow_thread.join()
+        temp_data.slideshow_thread = None
         logging.info("Successfully stopped slideshow thread")
         return True
     else:
@@ -154,7 +147,7 @@ def kill():
                 process_parts = process.split(' ')
                 # Strip all white space
                 map(str.strip, process_parts)
-                # Filter data from blank data
+                # Filter temp_data from blank temp_data
                 process_columns = []
                 for process_part in process_parts:
                     if process_part != '':
