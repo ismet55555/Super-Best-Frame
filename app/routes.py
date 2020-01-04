@@ -13,7 +13,7 @@ import threading
 from app import api  # Import the app (Controller)
 from app import slideshow  # Starts the main slideshow background thread
 
-from flask import flash, redirect, request, jsonify, g
+from flask import flash, redirect, request, jsonify
 from flask import render_template  # Import the view renderer (View)
 
 from pprint import pprint  # For troubleshooting and debugging

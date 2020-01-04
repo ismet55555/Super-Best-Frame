@@ -18,7 +18,7 @@ from app import utility  # Useful and custom functions
 
 
 
-async def slideshow_thread(slideshow_thread):
+def slideshow_thread():
     # Supported image file extensions
     # TODO: Load from app/config/img_formats.yml
     supported_formats = ['.png', '.jpg', '.jpeg', '.bmp', '.dib', '.jpe', '.jp2', '.pgm', '.tiff', '.tif', '.ppm']
@@ -151,4 +151,3 @@ async def slideshow_thread(slideshow_thread):
         routes.slideshow_thread_stop = True
         routes.slideshow_thread = None
 
-    slideshow_thread.stop()

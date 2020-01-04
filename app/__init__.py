@@ -20,8 +20,3 @@ from app import routes  # Web application routes/endpoints
 from app import effects  # Image transition effects
 from app import utility  # Useful and custom functions
 from app import slideshow  # main slideshow thread (runs in background)
-
-
-
-
-
