@@ -90,6 +90,55 @@ def stop():
 
 ###############################################################################
 
+@api.route('/status', methods=['GET', 'POST'])
+def status():
+    """
+    REST API endpoint to get the complete status of slideshow
+    :return: json confirmation message
+    """
+    status = {}
+    status['running'] = not temp_data.slideshow_thread_stop
+    if temp_data.slideshow_thread:
+        thread_id = temp_data.slideshow_thread.ident
+    else:
+        thread_id = None
+
+    status['thread_id'] = thread_id
+
+    img = {}
+    img['img_name'] = "TEMP NAME"
+    img['img_index'] = 0
+    img['img_height_px'] = 999
+    img['img_width_px'] = 888
+
+    effect = {}
+    effect['effect_name'] = "TEMP EFFECT NAME"
+    effect['effect_index'] = 0
+
+    settings = {}
+    settings['img_delay_ms'] = 1000
+    settings['effect_delay_ms'] = 50
+    
+    display = {}
+    display['display_index'] = 0
+    display['display_width_px'] = 1920
+    display['display_height_px'] = 720
+
+    success = True
+
+    # Logging message
+    logging.info(status) if success else logging.error(status)
+    return jsonify({
+        'success': success,
+        'status': status,
+        'img' : img,
+        'effect': effect,
+        'settings': settings,
+        'display': display
+    })
+
+###############################################################################
+
 @api.route('/kill', methods=['GET', 'POST'])
 def kill():
     """
