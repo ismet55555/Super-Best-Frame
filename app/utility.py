@@ -9,7 +9,7 @@ import subprocess
 
 import cv2
 import imutils
-from math import floor, ceil
+from math import floor
 
 from pprint import pprint  # For troubleshooting and debugging
 
@@ -21,7 +21,7 @@ def get_screen_size():
     """
     TODO
     """
-    #Display number
+    # Display number
     display_number = 0
     # Finding the size of the current screen
     processes = subprocess.Popen(["xrandr | grep '*'"],stdout=subprocess.PIPE, shell=True).stdout.read().decode('utf-8').strip().split(' ')
