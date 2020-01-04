@@ -5,9 +5,10 @@ import os
 import random
 import cv2
 import imutils
-from math import floor, ceil
+from math import ceil
 import numpy as np
 import logging
+import time
 
 from app import temp_data
 from app import effects  # Image transition effects
@@ -16,7 +17,25 @@ from app import utility  # Useful and custom functions
 
 ###############################################################################
 
+
+def create_img_window():
+    '''
+    TODO
+    '''
+    pass
+
+
+def destroy_img_window():
+    '''
+    TODO
+    '''
+    pass
+
+
 def slideshow_thread():
+    '''
+    TODO
+    '''
     # Supported image file extensions
     # TODO: Load from app/config/img_formats.yml
     supported_formats = ['.png', '.jpg', '.jpeg', '.bmp', '.dib', '.jpe', '.jp2', '.pgm', '.tiff', '.tif', '.ppm']
@@ -39,8 +58,8 @@ def slideshow_thread():
     print(currentDirectory)
 
     # Path for images
-    imageDirectory  = "Images"  # TODO: Load from configurations: app/config/defaults.yml
-    imageDirectory  = os.path.join(currentDirectory, imageDirectory) + "//"
+    imageDirectory = "Images"  # TODO: Load from configurations: app/config/defaults.yml
+    imageDirectory = os.path.join(currentDirectory, imageDirectory) + "//"
 
     # Array of opencv image objects
     imageNames = []
@@ -58,7 +77,7 @@ def slideshow_thread():
     logging.info('Successfully mapped out {} images'.format(len(imagePaths)))
 
     # Destroy any open windows, if any
-    cv2.destroyAllWindows()
+    # cv2.destroyAllWindows()
 
     logging.info('Configuring full screen image window ...')
     
@@ -67,9 +86,15 @@ def slideshow_thread():
     # FIX ME: Stuck the second time around!!!
     #############################
 
+    # img = np.zeros((4000, 6000, 3), np.uint8)
+    # cv2.imshow('Image', img)
 
+    # if not temp_data.opencv_window_open:
+    # temp_data.opencv_window_open = True
     # Opening openCV window
     print('ok')
+
+    # cv2.namedWindow('Image', flags=cv2.WND_PROP_AUTOSIZE)
     cv2.namedWindow('Image', cv2.WND_PROP_FULLSCREEN)
     # Setting up openCV window for full screen mode
     print('ok2')
@@ -83,7 +108,7 @@ def slideshow_thread():
     logging.info('Beginning picture frame image rotation. Use SPACEBAR to quit ...')
     error = None
     try:
-        while True and not temp_data.slideshow_thread_stop:
+        while not temp_data.slideshow_thread_stop:
             # Picking a random image from directory - Target
             random.seed()
             while img_end_index == img_begin_index:
@@ -92,13 +117,12 @@ def slideshow_thread():
             # Load the starting image images
             if img_begin_index == -1:
                 imageFileObject_begin = np.zeros((4000, 6000, 3), np.uint8)
+                # imageFileObject_begin = cv2.imread(imageDirectory + "smile.png", cv2.IMREAD_UNCHANGED)
             else:
                 imageFileObject_begin = cv2.imread(imagePaths[img_begin_index], cv2.IMREAD_UNCHANGED)
-            img_begin_aspect_ratio = imageFileObject_begin.shape[1] / imageFileObject_begin.shape[0]
 
             # Loading the ending image
             imageFileObject_end = cv2.imread(imagePaths[img_end_index], cv2.IMREAD_UNCHANGED)
-            img_end_aspect_ratio = imageFileObject_end.shape[1] / imageFileObject_end.shape[0]
 
             logging.info('Showing image "{}" (Index: {}, Size: {}x{})'.format(imageNames[img_end_index], img_end_index, imageFileObject_end.shape[1], imageFileObject_end.shape[0]))
 
@@ -140,12 +164,15 @@ def slideshow_thread():
     except Exception as error:
         logging.critical(error)
         
-    finally:
-        #Close all open openCV windows
-        logging.info('Closing all open image windows')
-        cv2.destroyWindow('Image')
-        cv2.destroyAllWindows()
+    # finally:
+    # Close all open openCV windows
+    logging.info('Closing all open image windows')
+    cv2.destroyWindow('Image')
+    cv2.destroyAllWindows()
 
-        temp_data.slideshow_thread_stop = True
-        temp_data.slideshow_thread = None
+    # Raise the stopped flag
+    temp_data.slideshow_thread_stop = True
+
+    # Clear the thread reference
+    temp_data.slideshow_thread = None
 

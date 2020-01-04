@@ -14,4 +14,5 @@ pkg-resources
 PyYAML
 requests
 pylint
+flake8
 git+https://github.com/GooeeIOT/pyfmt.git

@@ -14,11 +14,13 @@ from pprint import pprint  # For troubleshooting and debugging
 
 ###############################################################################
 
+
 def effect_none(img_end):
     """
     TODO
     """
     cv2.imshow('Image', img_end)
+
 
 def effect_fade(img_begin, img_end, len=20, delay=5):
     """
@@ -28,12 +30,13 @@ def effect_fade(img_begin, img_end, len=20, delay=5):
     changing = True
     while changing:
         for index in range(0, len):
-            fade_in_radio = index/float(len)
+            fade_in_radio = index / float(len)
             mergedImageFrame = cv2.addWeighted(img_begin, 1 - fade_in_radio, img_end, fade_in_radio, 0)
             cv2.imshow('Image', mergedImageFrame)
             cv2.waitKey(delay)
         cv2.imshow('Image', img_end)
         changing = False
+
 
 def effect_slide(img_begin, img_end, direction, screen_width_px, screen_height_px, len=10, delay=2):
     """
@@ -57,6 +60,7 @@ def effect_slide(img_begin, img_end, direction, screen_width_px, screen_height_p
             cv2.waitKey(delay)
         changing = False
 
+
 def effect_zoom_out(img_begin, img_end, len=20, delay=1):
     """
     TODO
@@ -67,7 +71,7 @@ def effect_zoom_out(img_begin, img_end, len=20, delay=1):
     changing = True
     while changing:
         for i in range(0, len):
-            crop_percent = i/float(len)  # Percent to crop
+            crop_percent = i / float(len)  # Percent to crop
             xi = int(crop_percent * (img_width_init / 2))
             xf = int(img_width_init - (crop_percent * (img_width_init / 2)))
             yi = int(crop_percent * (img_height_init / 2))

@@ -4,17 +4,12 @@
 # Definition off all flask app endpoints/routes
 # ---------------------------------------------------------
 
-import json
 import logging
 import os
-import random
 import subprocess
-import time
-import threading
 
 from app import api  # Import the app (Controller)
 from app import start_stop  # Starts and stops slideshow
-from app import slideshow  # Starts the main slideshow background thread
 from app import temp_data
 
 from flask import flash, redirect, request, jsonify
@@ -48,6 +43,7 @@ def index():
 
 ###############################################################################
 
+
 @api.route('/start', methods=['GET', 'POST'])
 def start():
     """
@@ -69,6 +65,7 @@ def start():
 
 ###############################################################################
 
+
 @api.route('/stop', methods=['GET', 'POST'])
 def stop():
     """
@@ -89,6 +86,7 @@ def stop():
     })
 
 ###############################################################################
+
 
 @api.route('/status', methods=['GET', 'POST'])
 def status():
@@ -139,6 +137,7 @@ def status():
 
 ###############################################################################
 
+
 @api.route('/kill', methods=['GET', 'POST'])
 def kill():
     """
@@ -186,6 +185,7 @@ def kill():
     })
 
 ###############################################################################
+
 
 @api.errorhandler(404)
 def page_not_found(e):

@@ -16,6 +16,7 @@ from pprint import pprint  # For troubleshooting and debugging
 
 ###############################################################################
 
+
 def get_screen_size():
     """
     TODO
@@ -35,6 +36,7 @@ def get_screen_size():
     height_px = int(processes.split('x')[1])
     # TODO: Error handling
     return width_px, height_px
+
 
 def process_fit_image(image, screen_width_px, screen_height_px):
     """
