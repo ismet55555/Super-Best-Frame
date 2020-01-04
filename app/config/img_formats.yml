@@ -1,0 +1,13 @@
+# Supported image file extensions
+supported_formats:
+  - '.png'
+  - '.jpg'
+  - '.jpeg'
+  - '.bmp'
+  - '.dib'
+  - '.jpe'
+  - '.jp2'
+  - '.pgm'
+  - '.tiff'
+  - '.tif'
+  - '.ppm'

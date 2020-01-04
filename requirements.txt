@@ -1,4 +1,17 @@
+# Flask Stuff
+Flask
+Flask-Cors
+python-dotenv
+gevent
+
+# Image Handling
 numpy
 opencv-python
 imutils
-pkg-resources==0.0.0
+
+# Formatting and Basic Tools
+pkg-resources
+PyYAML
+requests
+pylint
+git+https://github.com/GooeeIOT/pyfmt.git

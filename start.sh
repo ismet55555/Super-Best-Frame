@@ -2,6 +2,9 @@
 
 echo
 
+# Install required libraries / packages
+# TODO
+
 # Check to see if in the right base directory
 CURRENT_BASE_DIR=${PWD##*/}
 if [ $CURRENT_BASE_DIR = "Picture-Frame" ]

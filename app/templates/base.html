@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!-- Style / CSS Files  -->
+    <!-- Bootstrap Here -->
+    <!-- Custom Style File  -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Raleway&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Setting page title -->
+    <title>Picture-Frame</title>
+  </head>
+
+  <body>
+    <div>
+      <nav
+        class="navbar sticky navbar-expand-lg navbar-light d-flex justify-content-center"
+        style="background-color: #e3f2fd00;"
+      >
+        <a id="logo" class="navbar-brand" href="/index">
+          <img src="../images/logo.png" height="50em" alt="TODO" />
+        </a>
+
+      </nav>
+    </div>
+
+    <hr />
+
+    {% block content %}{% endblock %}
+
+    <hr />
+
+    <div id="version">Cool Heart Media | V0.20</div>
+
+    <!-- Imported Scripts Here  -->
+    <script src="{{ url_for('static', filename='custom.js')}}"></script>
+  </body>
+</html>
