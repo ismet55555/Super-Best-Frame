@@ -30,8 +30,7 @@ if __name__ == '__main__':
     api.run(host='0.0.0.0', port=5555)
 
     # # NOTE: PRODUCTION: Using gevent standalone Web Server Gateway Interface (WSGI) container
-    # logging.info(
-    #     'NOTE: Using gevent standalone Web Server Gateway Interface (WSGI) server for production deployment\n\n')
+    # logging.info('NOTE: Using gevent standalone Web Server Gateway Interface (WSGI) server for production deployment\n\n')
     # http_server = WSGIServer(('', 5555), api, log=logging)
     # http_server.serve_forever()
 

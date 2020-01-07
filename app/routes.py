@@ -196,47 +196,72 @@ def index():
     # Rendering index.html
     return render_template('index.html')
 
+
+
+
+
+
+
+
+
+
+
 ###############################################################################
 
 
-import cv2
-import sys
 
-@api.route('/test', methods=['GET', 'POST'])
-def test():
-    """
-    REST API endpoint to test some stuff
-    :return: json confirmation message
-    """
 
-    currentDirectory = os.path.abspath(os.path.dirname(sys.argv[0]))
-    imageDirectory = "Images"
-    imageDirectory = os.path.join(currentDirectory, imageDirectory) + "//"
-    filename = 'DSC02055.JPG'
 
-    print('cv2.namedWindow')
-    cv2.namedWindow('Image', cv2.WND_PROP_FULLSCREEN)
 
-    print('cv2.setWindowProperty')
-    cv2.setWindowProperty("Image", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
 
-    img = cv2.imread(imageDirectory + filename, cv2.IMREAD_UNCHANGED)
 
-    while True:
-        print('cv2.imshow')
-        cv2.imshow('Image', img)
-        if cv2.waitKey(1500) == ord('q'):
-            break
 
-    print('cv2.destroyAllWindows()')
-    cv2.destroyAllWindows()
+# import cv2
+# import sys
+# import threading
 
-    success = True
-    message = 'TESTING'
+# def image_test():
+#     currentDirectory = os.path.abspath(os.path.dirname(sys.argv[0]))
+#     imageDirectory = "Images"
+#     imageDirectory = os.path.join(currentDirectory, imageDirectory) + "//"
+#     filename = 'DSC02055.JPG'
 
-    # Logging message
-    logging.info(message) if success else logging.error(message)
-    return jsonify({
-        'success': success,
-        'message': message
-    })
+#     print('cv2.namedWindow')
+#     cv2.namedWindow('Image', cv2.WND_PROP_FULLSCREEN)
+
+#     print('cv2.setWindowProperty')
+#     cv2.setWindowProperty("Image", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
+
+#     img = cv2.imread(imageDirectory + filename, cv2.IMREAD_UNCHANGED)
+
+#     while True:
+#         print('cv2.imshow')
+#         cv2.imshow('Image', img)
+#         if cv2.waitKey(1500) == ord('q'):
+#             break
+
+#     print('cv2.destroyAllWindows()')
+#     cv2.destroyAllWindows()
+
+
+# @api.route('/test', methods=['GET', 'POST'])
+# def test():
+#     """
+#     REST API endpoint to test some stuff
+#     :return: json confirmation message
+#     """
+
+#     # thread = threading.Thread(target=image_test)
+#     # thread.start()
+
+#     image_test()
+
+#     success = True
+#     message = 'TESTING'
+
+#     # Logging message
+#     logging.info(message) if success else logging.error(message)
+#     return jsonify({
+#         'success': success,
+#         'message': message
+#     })

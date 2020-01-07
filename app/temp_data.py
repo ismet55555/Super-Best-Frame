@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
 
-slideshow_thread = None
-slideshow_thread_stop = True
-opencv_window_open = False
+slideshow_running = False
+slideshow_process_stop = False
+slideshow_process = -1
