@@ -29,61 +29,6 @@ print(base_dir)
 
 ###############################################################################
 
-@api.route('/')
-@api.route('/index', methods=['GET'])
-def index():
-    """
-    REST API endpoint for home page (index).
-    :return: html of index processed by jinja2
-    """
-    logging.info('Successfully hit the index page!!!')
-
-    # Rendering index.html
-    return render_template('index.html')
-
-###############################################################################
-
-import cv2
-import sys
-
-@api.route('/test', methods=['GET', 'POST'])
-def test():
-    """
-    REST API endpoint to test some stuff
-    :return: json confirmation message
-    """
-
-    currentDirectory = os.path.abspath(os.path.dirname(sys.argv[0]))
-    imageDirectory = "Images"
-    imageDirectory = os.path.join(currentDirectory, imageDirectory) + "//"
-    filename = 'DSC02055.JPG'
-
-    print('cv2.namedWindow')
-    cv2.namedWindow('Image', cv2.WND_PROP_FULLSCREEN)
-    print('cv2.setWindowProperty')
-    cv2.setWindowProperty("Image", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
-    img = cv2.imread(imageDirectory + filename, cv2.IMREAD_UNCHANGED)
-
-    while True:
-        print('cv2.imshow')
-        cv2.imshow('Image', img)
-        if cv2.waitKey(1500) == ord('q'):
-            break
-
-    print('cv2.destroyAllWindows()')
-    cv2.destroyAllWindows()
-
-    success = True
-    message = 'TESTING'
-
-    # Logging message
-    logging.info(message) if success else logging.error(message)
-    return jsonify({
-        'success': success,
-        'message': message
-    })
-
-
 
 @api.route('/start', methods=['GET', 'POST'])
 def start():
@@ -235,3 +180,63 @@ def page_not_found(e):
     :return: html of 404 page processed by jinja2
     """
     return render_template('404.html'), 404
+
+
+###############################################################################
+
+@api.route('/')
+@api.route('/index', methods=['GET'])
+def index():
+    """
+    REST API endpoint for home page (index).
+    :return: html of index processed by jinja2
+    """
+    logging.info('Successfully hit the index page!!!')
+
+    # Rendering index.html
+    return render_template('index.html')
+
+###############################################################################
+
+
+import cv2
+import sys
+
+@api.route('/test', methods=['GET', 'POST'])
+def test():
+    """
+    REST API endpoint to test some stuff
+    :return: json confirmation message
+    """
+
+    currentDirectory = os.path.abspath(os.path.dirname(sys.argv[0]))
+    imageDirectory = "Images"
+    imageDirectory = os.path.join(currentDirectory, imageDirectory) + "//"
+    filename = 'DSC02055.JPG'
+
+    print('cv2.namedWindow')
+    cv2.namedWindow('Image', cv2.WND_PROP_FULLSCREEN)
+
+    print('cv2.setWindowProperty')
+    cv2.setWindowProperty("Image", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
+
+    img = cv2.imread(imageDirectory + filename, cv2.IMREAD_UNCHANGED)
+
+    while True:
+        print('cv2.imshow')
+        cv2.imshow('Image', img)
+        if cv2.waitKey(1500) == ord('q'):
+            break
+
+    print('cv2.destroyAllWindows()')
+    cv2.destroyAllWindows()
+
+    success = True
+    message = 'TESTING'
+
+    # Logging message
+    logging.info(message) if success else logging.error(message)
+    return jsonify({
+        'success': success,
+        'message': message
+    })
