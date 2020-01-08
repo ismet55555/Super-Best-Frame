@@ -8,7 +8,9 @@ The slideshow is displayed on a connected display device / monitor in either hor
 ### Minimum System Requirements
 The following are the minimum system requirments where this application will work smooth and as intendent.
 - CPU: 1.2 GHz
+- Cores: 4
 - RAM: 1GB
+
 
 ### Works Fine on the Following Systems:
 - Raspberry Pi 3b+ *(Raspbian)*
@@ -17,7 +19,7 @@ The following are the minimum system requirments where this application will wor
 - Ubuntu 16.04 and up
 
 ### Will Not Work on the Following Systems:
-- Raspberry Pi Zero W (Too Slow)
+- Raspberry Pi Zero W
 
 
 ---
@@ -46,7 +48,7 @@ The following are the minimum system requirments where this application will wor
 
 **NOTE**: The `start.sh` script executes the following:
 1. Creates a virtual environment (`$ python3 -m venv env`)
-2. Activates the virtual environment (`$ . env/bin/activate`)
+2. Activates the virtual environment (`$ source env/bin/activate`)
 3. Installs python package dependencies (`(env) $ pip install -r requirements.txt`)
 4. Runs the python script (`(env) $ python3 picture-frame.py`)
 ---
