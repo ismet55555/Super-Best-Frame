@@ -20,11 +20,9 @@ from pprint import pprint  # For troubleshooting and debugging
 
 # Flask application base directory (CHECK ME)
 base_app_dir = os.path.abspath(os.path.dirname(__file__))
-print(base_app_dir)
 
 # FIXME: somethign is not right here.... we get "..app/resources/cell"
 base_dir = os.path.join(base_app_dir, '..')
-print(base_dir)
 
 
 ###############################################################################
@@ -36,11 +34,14 @@ def start():
     REST API endpoint to start the image slideshow.
     :return: json confirmation message
     """
-    # Starting the slideshow
-    start_stop.start_slideshow()
-
-    success = True
-    message = 'TODO... started'
+    try:
+        # Starting the slideshow
+        start_stop.start_slideshow()
+        success = True
+        message = 'Successfully started picture frame slidshow'
+    except Exception as e:
+        success = False
+        message = 'Failed to start picture frame slideshow. Exception: {}'.format(e)
 
     # Logging message
     logging.info(message) if success else logging.error(message)
@@ -58,11 +59,14 @@ def stop():
     REST API endpoint to stop the image slideshow.
     :return: json confirmation message
     """
-    # Stopping slideshow
-    start_stop.stop_slideshow()
-
-    success = True
-    message = 'TODO... stopped'
+    try:
+        # Stopping slideshow
+        start_stop.stop_slideshow()
+        success = True
+        message = 'Successfully stopped picture frame slidshow'
+    except Exception as e:
+        success = False
+        message = 'Failed to stop picture frame slideshow. Exception: {}'.format(e)
 
     # Logging message
     logging.info(message) if success else logging.error(message)
@@ -80,6 +84,9 @@ def status():
     REST API endpoint to get the complete status of slideshow
     :return: json confirmation message
     """
+
+    # FIXME: Make sure to update the temp_data stuff where appropriate
+
     status = {}
     status['running'] = not temp_data.slideshow_thread_stop
     if temp_data.slideshow_thread:

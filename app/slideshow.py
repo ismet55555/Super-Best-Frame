@@ -8,9 +8,7 @@ import imutils
 from math import ceil
 import numpy as np
 import logging
-import time
 
-from app import temp_data
 from app import effects  # Image transition effects
 from app import utility  # Useful and custom functions
 
@@ -18,13 +16,13 @@ from app import utility  # Useful and custom functions
 ###############################################################################
 
 
-def slideshow_thread(process_is_running_queue):
+def slideshow_process(process_is_running):
     '''
     TODO
     '''
     # Supported image file extensions
     # TODO: Load from app/config/img_formats.yml
-    # supported_formats = ['.png', '.jpg', '.jpeg', '.bmp', '.dib', '.jpe', '.jp2', '.pgm', '.tiff', '.tif', '.ppm']
+    supported_formats = ['.png', '.jpg', '.jpeg', '.bmp', '.dib', '.jpe', '.jp2', '.pgm', '.tiff', '.tif', '.ppm']
 
     # Finding the screen width and height
     screen_width_px, screen_height_px = utility.get_screen_size()
@@ -41,7 +39,6 @@ def slideshow_thread(process_is_running_queue):
 
     # Set up current directory path
     currentDirectory = os.path.abspath(os.path.dirname(sys.argv[0])) 
-    print(currentDirectory)
 
     # Path for images
     imageDirectory = "Images"  # TODO: Load from configurations: app/config/defaults.yml
@@ -76,104 +73,67 @@ def slideshow_thread(process_is_running_queue):
     print('')
     logging.info('Beginning picture frame image rotation. Use SPACEBAR to quit ...')
     error = None
-    # try:
-    print(process_is_running_queue.get())
-    print('ok')
-    print(process_is_running_queue.get())
+    try:
+        while process_is_running.value:
+            # Picking a random image from directory - Target
+            random.seed()
+            while img_end_index == img_begin_index:
+                img_end_index = random.randint(0, len(imagePaths)-1)
 
+            # Load the starting image images
+            if img_begin_index == -1:
+                imageFileObject_begin = np.zeros((4000, 6000, 3), np.uint8)
+                # imageFileObject_begin = cv2.imread(imageDirectory + "smile.png", cv2.IMREAD_UNCHANGED)
+            else:
+                imageFileObject_begin = cv2.imread(imagePaths[img_begin_index], cv2.IMREAD_UNCHANGED)
 
-    # I NEED PIPE OBJECT NOT QUEUE!!!! https://docs.python.org/2/library/multiprocessing.html
-    # I NEED SHARED MEMORY VARIABLE: 
-    #      - https://www.geeksforgeeks.org/multiprocessing-python-set-2/
-    #      - https://eli.thegreenplace.net/2012/01/04/shared-counter-with-pythons-multiprocessing
-    #      - ex: variable_to_be_passed = multiprocessing.Value('i')
+            # Loading the ending image
+            imageFileObject_end = cv2.imread(imagePaths[img_end_index], cv2.IMREAD_UNCHANGED)
 
+            logging.info('Showing image "{}" (Index: {}, Size: {}x{})'.format(imageNames[img_end_index], img_end_index, imageFileObject_end.shape[1], imageFileObject_end.shape[0]))
 
-    while process_is_running_queue.get():
-        # Picking a random image from directory - Target
-        random.seed()
-        while img_end_index == img_begin_index:
-            img_end_index = random.randint(0, len(imagePaths)-1)
+            # Process the beginning and ending image
+            imageFileObject_begin = utility.process_fit_image(imageFileObject_begin, screen_width_px, screen_height_px)
+            imageFileObject_end = utility.process_fit_image(imageFileObject_end, screen_width_px, screen_height_px)
 
-        # Load the starting image images
-        if img_begin_index == -1:
-            imageFileObject_begin = np.zeros((4000, 6000, 3), np.uint8)
-            # imageFileObject_begin = cv2.imread(imageDirectory + "smile.png", cv2.IMREAD_UNCHANGED)
-        else:
-            imageFileObject_begin = cv2.imread(imagePaths[img_begin_index], cv2.IMREAD_UNCHANGED)
+            # Account for slight difference when border is added
+            avg_width = ceil((imageFileObject_begin.shape[1] + imageFileObject_end.shape[1]) / 2)
+            avg_height = ceil((imageFileObject_begin.shape[0] + imageFileObject_end.shape[0]) / 2)
 
-        # Loading the ending image
-        imageFileObject_end = cv2.imread(imagePaths[img_end_index], cv2.IMREAD_UNCHANGED)
+            # Resize to average dimensions
+            imageFileObject_begin = imutils.resize(imageFileObject_begin, width=avg_width, height=avg_height)
+            imageFileObject_end = imutils.resize(imageFileObject_end, width=avg_width, height=avg_height)
 
-        logging.info('Showing image "{}" (Index: {}, Size: {}x{})'.format(imageNames[img_end_index], img_end_index, imageFileObject_end.shape[1], imageFileObject_end.shape[0]))
+            # Pick a random effect
+            random.seed()
+            effect_index = random.randint(0, 2)
 
-        # Process the beginning and ending image
-        imageFileObject_begin = utility.process_fit_image(imageFileObject_begin, screen_width_px, screen_height_px)
-        imageFileObject_end = utility.process_fit_image(imageFileObject_end, screen_width_px, screen_height_px)
+            if effect_index == 0:
+                # Fade transition effect
+                effects.effect_fade(imageFileObject_begin, imageFileObject_end)
+            elif effect_index == 1:
+                # Slide transition effect
+                effects.effect_slide(imageFileObject_begin, imageFileObject_end, 'right', screen_width_px, screen_height_px)
+            else:
+                # Zoom in transition effect
+                effects.effect_zoom_out(imageFileObject_begin, imageFileObject_end)
 
-        # Account for slight difference when border is added
-        avg_width = ceil((imageFileObject_begin.shape[1] + imageFileObject_end.shape[1]) / 2)
-        avg_height = ceil((imageFileObject_begin.shape[0] + imageFileObject_end.shape[0]) / 2)
+            # Waiting and watching out for key press to quit
+            if cv2.waitKey(image_delay) == ord(' '):
+                logging.info('***********************************************')
+                logging.info('*     "SPACEBAR" key detected. Exiting ...    *')
+                logging.info('***********************************************')
+                break  # Stopping program
 
-        # Resize to average dimensions
-        imageFileObject_begin = imutils.resize(imageFileObject_begin, width=avg_width, height=avg_height)
-        imageFileObject_end = imutils.resize(imageFileObject_end, width=avg_width, height=avg_height)
+            # The next beginning image is the last end image
+            img_begin_index = img_end_index
 
-        # Pick a random effect
-        random.seed()
-        effect_index = random.randint(0, 2)
-
-        if effect_index == 0:
-            # Fade transition effect
-            effects.effect_fade(imageFileObject_begin, imageFileObject_end)
-        elif effect_index == 1:
-            # Slide transition effect
-            effects.effect_slide(imageFileObject_begin, imageFileObject_end, 'right', screen_width_px, screen_height_px)
-        else:
-            # Zoom in transition effect
-            effects.effect_zoom_out(imageFileObject_begin, imageFileObject_end)
-
-        # Waiting and watching out for key press to quit
-        if cv2.waitKey(image_delay) == ord(' '):
-            logging.info('***************************************')
-            logging.info('*  SPACEBAR key detected. Exiting ... *')
-            logging.info('**************************************')
-            break  # Stopping program
-
-        # The next beginning image is the last end image
-        img_begin_index = img_end_index
-
-        print('RUNNING ...')
-
-    # except Exception as error:
-    #     logging.critical(error)
+    except Exception as error:
+        logging.critical('An error has occurred while displaying images. Exception: {}'.format(error))
 
     # Close all open openCV windows
     logging.info('Closing open image window ...')
     cv2.destroyWindow('Image')
 
-    # Setting the process stop queue flag to false 
-    # process_is_running_queue.put(False)
-
-
-
-
-
-
-
-# Ok after some trial and error I got it to work!
-
-# The solution for me is to not use the packaged Flask server:
-
-#     api = Flask(__name__)
-#     api.run(host='0.0.0.0', port=5555)
-
-# Instead, use a seperate WSGI Server, in my case `gevent` (http://www.gevent.org/api/gevent.pywsgi.html):
-
-#     from gevent.pywsgi import WSGIServer
-#     http_server = WSGIServer(('', 5555), api, log=logging)
-#     http_server.serve_forever()
-
-# That was able to repeatedly open and close the OpenCV window.
-
-# Weird ...
+    # Setting the process stop flag to false
+    process_is_running.value = False

@@ -1,31 +1,29 @@
 #!/usr/bin/env python3
 
 import logging
-import threading
 
 from app import temp_data
 from app import slideshow
 
-from multiprocessing import Process, Queue
+from multiprocessing import Process, Value
 
 ###############################################################################
 
-# Creating a process queue to communicate with independent process
-process_is_running_queue = Queue()
-process_is_running_queue.put(False)
-
+# Creating a boolean ('b') process value to communicate with independent process
+process_is_running = Value('b', False)
 
 def start_slideshow():
     """
-    TODO
+    Starting the picture frame slideshow.
+    This starts the independent background process.
+    :return: success
     """
-    print('\n STARTING ...')
-    if not process_is_running_queue.get():
-        # Adding a process stop queue 
-        process_is_running_queue.put(True)
+    if not process_is_running.value:
+        # Chaning the process value
+        process_is_running.value = True
 
-        # Creating the background thread for the slideshow
-        temp_data.slideshow_process = Process(target=slideshow.slideshow_thread, args=(process_is_running_queue,))
+        # Creating the background process for the slideshow
+        temp_data.slideshow_process = Process(target=slideshow.slideshow_process, args=[process_is_running])
 
         # Starting the slideshow
         temp_data.slideshow_process.start()
@@ -36,25 +34,23 @@ def start_slideshow():
         logging.critical("The picture-frame slideshow is already running")
         return False
 
-import time
 
 def stop_slideshow():
     """
-    TODO
+    Ends the picture frame slideshow.
+    This stops the independent background process.
+    :return: success
     """
-    print('\n STOPPING ...')
-    if process_is_running_queue.get():
+    if process_is_running.value:
         logging.info("Stopping independent slideshow process (Process: {}) ...".format(temp_data.slideshow_process.ident))
 
-        # Raise Flag to stop slide show process
-        temp_data.slideshow_process_stop = True
-
         # Signaling the process to stop through the Queue
-        process_is_running_queue.put(False)
+        process_is_running.value = False
 
-        # Waiting for the process to stop
+        # Waiting for the independent process to stop
         temp_data.slideshow_process.join()
 
+        # Closing the independent process
         temp_data.slideshow_process.close()
 
         logging.info("Successfully stopped independent slideshow process")
