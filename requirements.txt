@@ -10,6 +10,7 @@ opencv-python
 imutils
 
 # Formatting and Basic Tools
+coloredlogs
 pkg-resources
 PyYAML
 requests
