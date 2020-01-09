@@ -23,7 +23,7 @@ TODO: Explain the remote control blah blah
 
 
 
-## Compatibility
+## :thumbsup: Compatibility
 
 ### Minimum System Requirements
 The following are the minimum system requirments where this application will work smooth and as intendent.
@@ -78,14 +78,14 @@ TODO: TEST ON WSL!!
 
 
 
-## Supported Image Formats
+## :heavy_check_mark: Supported Image Formats
 - `.png`, `.jpg`, `.jpeg`, `.bmp`, `.dib`, `.jpe`, `.jp2`, `.pgm`, `.tiff`, `.tif`, `.ppm`
 
 
 
 
 
-## Adding Images to the `Images` Directory
+## :heavy_plus_sign: Adding Images to the `Images` Directory
 All images that are displayed in the picture frame must be stored in the "Images" directory of this project.
 Note that subdirectories in the "Images" directory will not be considered.
 
@@ -100,8 +100,8 @@ Note that subdirectories in the "Images" directory will not be considered.
 
 
 
-## Author
-👤 **Ismet Handzic** - Github: [@ismet55555](https://github.com/ismet55555)
+## :bust_in_silhouette: Author
+**Ismet Handzic** - Github: [@ismet55555](https://github.com/ismet55555)
 
 
 
