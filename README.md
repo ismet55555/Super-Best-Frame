@@ -1,27 +1,34 @@
 # Picture-Frame
-Simple picture frame slideshow for running on linux systems.These linux systems may include Raspian, Ubuntu, Mint, or even WSL (Windows Subsystem for Linux).
+This is a picture frame slideshow for running on linux systems that is connected to a display/monitor. These linux systems may include Raspian, Ubuntu, Mint, or even WSL (Windows Subsystem for Linux).
 The slideshow is displayed on a connected display device / monitor in either horizontal (landscape) or vertical (portrait) orientation.
+TODO: Explain the remote control blah blah
+
+## Basic Description
+You will run this on a computer that is connected to a monitor or display.
+You will then be able to control the images on the display using a web browser an through your local or home network.
 
 ---
 ## Compatibility
 
 ### Minimum System Requirements
 The following are the minimum system requirments where this application will work smooth and as intendent.
-- CPU: 1.2 GHz
-- Cores: 4
-- RAM: 1GB
-- Disk Storage: 400 MB + Images
+- __CPU__: 1.2 GHz
+- __Cores__: 4
+- __RAM__: 1GB
+- __Disk Storage__: 400 MB + Images
 
 
-### Works Fine on the Following Systems:
-- Raspberry Pi 3b+ *(Raspbian)*
-- Raspberry Pi 4 *(Raspbian)*
-- Atomic Pi *(Lubuntu 18.04)*
-- Ubuntu 16.04 and up
+### Verified Platforms
+This program has been tested on a limited number of different systems, this is what I know so far:
 
-### Will Not Work on the Following Systems:
-- Raspberry Pi Zero W
+|           Works Fine           |    Will Not Work    |
+|:------------------------------:|:-------------------:|
+| Raspberry Pi 3b+ *(Raspbian)*  | Raspberry Pi Zero W |
+| Raspberry Pi 4 *(Raspbian)*    |                     |
+| Atomic Pi *(Lubuntu 18.04)*    |                     |
+| Ubuntu 16.04 and up            |                     |
 
+TODO: TEST ON WSL!!
 
 ---
 
