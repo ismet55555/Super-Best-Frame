@@ -69,19 +69,13 @@ TODO: TEST ON WSL!!
 8. Run the start script
     - `$ ./start.sh`
 
-**NOTE**: The `start.sh` script executes the following:
-1. Creates a virtual environment (`$ python3 -m venv env`)
-2. Activates the virtual environment (`$ source env/bin/activate`)
-3. Installs python package dependencies (`(env) $ pip install -r requirements.txt`)
-4. Runs the python script (`(env) $ python3 picture-frame.py`)
+**NOTE**: *Check out the [`start.sh`](start.sh) script to see what exactly it executes.*
 
 
 
 
 ## :heavy_check_mark: Supported Image Formats
 - `.png`, `.jpg`, `.jpeg`, `.bmp`, `.dib`, `.jpe`, `.jp2`, `.pgm`, `.tiff`, `.tif`, `.ppm`
-
-
 
 
 
