@@ -7,17 +7,20 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <!-- Style / CSS Files  -->
-    <!-- Bootstrap Here -->
+    <!-- Import all local fonts -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/fonts.css') }}"
+    />
+    <!-- Materialize CSS -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/materialize.min.css') }}"
+    />
     <!-- Custom Style File  -->
     <link
       rel="stylesheet"
-      href="{{ url_for('static', filename='style.css') }}"
-    />
-    <!-- Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Raleway&display=swap"
-      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
     />
     <!-- Setting page title -->
     <title>Picture-Frame</title>
@@ -30,7 +33,7 @@
         style="background-color: #e3f2fd00;"
       >
         <a id="logo" class="navbar-brand" href="/index">
-          <img src="../images/logo.png" height="50em" alt="TODO" />
+          <img src="{{ url_for('static', filename='images/logo.png') }}" height="50em" alt="TODO" />
         </a>
 
       </nav>
@@ -44,7 +47,8 @@
 
     <div id="version">Cool Heart Media | V0.20</div>
 
-    <!-- Imported Scripts Here  -->
-    <script src="{{ url_for('static', filename='custom.js')}}"></script>
+    <!-- Imported Scripts Here  CHECK IF LAST OR FIRST -->  
+    <script src="{{ url_for('static', filename='js/materialize.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/custom.js')}}"></script>
   </body>
 </html>

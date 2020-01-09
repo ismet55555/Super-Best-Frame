@@ -157,7 +157,7 @@ def kill():
                         process_columns.append(process_part)
                 # Store the PID for process (second column)
                 pids.append(process_columns[1])
-            logging.info('Web application endpoint "/shutdown" was engaged. Terminating web application ...')
+            logging.info('Web application endpoint "/kill" was engaged. Terminating web application ...')
             # Remove duplicates
             pids = list(set(pids))
             # Kill application (ommiting PID heading item)

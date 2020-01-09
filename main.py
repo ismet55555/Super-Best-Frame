@@ -2,6 +2,7 @@
 
 # ---------------------------------------------------------
 # Picture-Frame: Main flask application entry point
+# Run with command: python3 main.py
 # ---------------------------------------------------------
 
 # Import all modules for app

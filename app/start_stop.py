@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 
+# ---------------------------------------------------------
+# Starting and Stopping of the Image Slideshow
+# ---------------------------------------------------------
+
 import logging
 
 from app import temp_data
