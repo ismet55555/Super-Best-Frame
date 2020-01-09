@@ -1,6 +1,6 @@
 
 <h1 align="center">Picture-Frame :eyes:</h1>
----
+
 This is a picture frame slideshow for running on linux systems that is connected to a display/monitor. These linux systems may include Raspian, Ubuntu, Mint, or even WSL (Windows Subsystem for Linux).
 The slideshow is displayed on a connected display device / monitor in either horizontal (landscape) or vertical (portrait) orientation.
 TODO: Explain the remote control blah blah
