@@ -12,7 +12,7 @@ TODO: Explain the remote control blah blah
 
 ---
 
-## Demo
+## :sparkles: Demo
 `picture-frame` is able to create a beautiful mointor/display slideshows
 
 <p align="center">
