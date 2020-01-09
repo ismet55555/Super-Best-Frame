@@ -10,6 +10,7 @@ The following are the minimum system requirments where this application will wor
 - CPU: 1.2 GHz
 - Cores: 4
 - RAM: 1GB
+- Disk Storage: 400 MB + Images
 
 
 ### Works Fine on the Following Systems:
