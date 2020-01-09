@@ -1,14 +1,26 @@
 # Picture-Frame
+<h1 align="center">Picture-Frame :eyes:</h1>
 This is a picture frame slideshow for running on linux systems that is connected to a display/monitor. These linux systems may include Raspian, Ubuntu, Mint, or even WSL (Windows Subsystem for Linux).
 The slideshow is displayed on a connected display device / monitor in either horizontal (landscape) or vertical (portrait) orientation.
 TODO: Explain the remote control blah blah
 
-## Basic Description
+### Very Basically ...
 1. You run this on a computer that is connected to a monitor or display.
 2. You will then be able to control the shown images on the monitor using a web browser website.
 3. You can access this web browswer website through your local or home network.
 
 ---
+
+## Demo
+`picture-frame` is able to create a beautiful mointor/display slideshows
+
+<p align="center">
+  <img width="700" align="center" src="https://user-images.githubusercontent.com/9840435/60266022-72a82400-98e7-11e9-9958-f9004c2f97e1.gif" alt="demo"/>
+</p>
+
+
+---
+
 ## Compatibility
 
 ### Minimum System Requirements
@@ -81,3 +93,11 @@ Note that subdirectories in the "Images" directory will not be considered.
 - TODO
 
 
+---
+
+## Author
+👤 **Ismet Handzic** - Github: [@ismet55555](https://github.com/ismet55555)
+
+
+## Licence
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
