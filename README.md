@@ -95,7 +95,7 @@ Note that subdirectories in the "Images" directory will not be considered.
 
 
 ## :bust_in_silhouette: Author
-**Ismet Handzic** - Github: [@ismet55555](https://github.com/ismet55555)
+**Ismet Handžić** - Github: [@ismet55555](https://github.com/ismet55555)
 
 
 
