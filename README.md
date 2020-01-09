@@ -4,8 +4,9 @@ The slideshow is displayed on a connected display device / monitor in either hor
 TODO: Explain the remote control blah blah
 
 ## Basic Description
-You will run this on a computer that is connected to a monitor or display.
-You will then be able to control the images on the display using a web browser an through your local or home network.
+1. You run this on a computer that is connected to a monitor or display.
+2. You will then be able to control the shown images on the monitor using a web browser website.
+3. You can access this web browswer website through your local or home network.
 
 ---
 ## Compatibility
