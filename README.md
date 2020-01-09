@@ -5,12 +5,13 @@ This is a picture frame slideshow for running on linux systems that is connected
 The slideshow is displayed on a connected display device / monitor in either horizontal (landscape) or vertical (portrait) orientation.
 TODO: Explain the remote control blah blah
 
+
 ### Very Basically ...
 1. You run this on a computer that is connected to a monitor or display.
 2. You will then be able to control the shown images on the monitor using a web browser website.
 3. You can access this web browswer website through your local or home network.
 
----
+
 
 ## :sparkles: Demo
 `picture-frame` is able to create a beautiful mointor/display slideshows
@@ -20,7 +21,7 @@ TODO: Explain the remote control blah blah
 </p>
 
 
----
+
 
 ## Compatibility
 
@@ -44,9 +45,9 @@ This program has been tested on a limited number of different systems, this is w
 
 TODO: TEST ON WSL!!
 
----
 
-## Installing and Setting Up Picture-Frame
+
+## :rocket: Installing and Setup
 1. *[If on remote computer]* Enter remote linux device using `ssh`:
     - Linux: `ssh <username/login>@<IP address of picture frame computer>`
     - Windows: `TODO`
@@ -73,12 +74,16 @@ TODO: TEST ON WSL!!
 2. Activates the virtual environment (`$ source env/bin/activate`)
 3. Installs python package dependencies (`(env) $ pip install -r requirements.txt`)
 4. Runs the python script (`(env) $ python3 picture-frame.py`)
----
+
+
+
 
 ## Supported Image Formats
 - `.png`, `.jpg`, `.jpeg`, `.bmp`, `.dib`, `.jpe`, `.jp2`, `.pgm`, `.tiff`, `.tif`, `.ppm`
 
----
+
+
+
 
 ## Adding Images to the `Images` Directory
 All images that are displayed in the picture frame must be stored in the "Images" directory of this project.
@@ -94,10 +99,10 @@ Note that subdirectories in the "Images" directory will not be considered.
 - TODO
 
 
----
 
 ## Author
 👤 **Ismet Handzic** - Github: [@ismet55555](https://github.com/ismet55555)
+
 
 
 ## Licence
