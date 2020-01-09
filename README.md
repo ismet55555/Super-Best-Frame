@@ -9,7 +9,7 @@ TODO: Explain the remote control blah blah
 ### Very Basically ...
 1. You run this on a computer that is connected to a monitor or display.
 2. You will then be able to control the shown images on the monitor using a website that you can access with a computer, phone, or tablet.
-3. You can access this web browswer website through your local or home network.
+3. You can access this website as long as you are on your local or home network.
 
 
 
