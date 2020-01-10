@@ -54,23 +54,25 @@ TODO: Need `sudo apt install -y openssh-server` ... maybe seperate .md for ssh s
     - MAC: `TODO`
 2. Navigate into user documents directory: 
     - `$ cd ~/Documents`
-3. *[If needed]* Install git:
+3. Install git:
     - `$ sudo apt -y install git-all`
-4. *[If needed]* Configure git:
-    - `$ git config --global user.name "<Your Name"`
-    - `$ git config --global user.email "<your_email@example.com>"`
-5. Clone git repo form github:
+4. Configure git:
+    - `$ git config --global user.name "Your Name Here"`
+    - `$ git config --global user.email "your.email@here.com"`
+5. Clone this public git repo form github:
     - `$ git clone git@github.com:ismet55555/Picture-Frame.git`
 6. Change directory into cloned directory:
     - `$ cd Picture-Frame`
 7. Install OpenCV system dependencies:
-    - `(env) $ sudo apt -y install python3-opencv`
+    - `$ sudo apt -y install python3-opencv`
 8. Run the start script
     - `$ ./start.sh`
 
 **NOTE**: *Check out the [`start.sh`](start.sh) script to see what exactly it executes.*
 
 
+## :boom: Usage
+TODO - maybe some gifs
 
 
 ## :heavy_check_mark: Supported Image Formats
