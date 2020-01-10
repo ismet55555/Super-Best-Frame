@@ -10,9 +10,11 @@ TODO: Explain the remote control blah blah
 2. You will then be able to control the shown images on the monitor using a website that you can access with a computer, phone, or tablet.
 3. You can access this website as long as you are on your local or home network.
 
+## :eyeglasses: Overview
 
 
-## :sparkles: Demo
+
+## Demo
 `picture-frame` is able to create a beautiful mointor/display slideshows
 
 <p align="center">
@@ -27,7 +29,7 @@ TODO: Explain the remote control blah blah
 ### Minimum System Requirements
 The following are the minimum system requirments where this application will work smooth and as intendent.
 - __CPU__: 1.2 GHz
-- __Cores__: 4
+- __CPUs/Cores__: 4
 - __RAM__: 1GB
 - __Disk Storage__: 400 MB + Images
 
