@@ -75,22 +75,22 @@ TODO: Need `sudo apt install -y openssh-server` ... maybe seperate .md for ssh s
 TODO - maybe some gifs
 
 
-## :heavy_check_mark: Supported Image Formats
+### Image Formats You Can Use
 - `.png`, `.jpg`, `.jpeg`, `.bmp`, `.dib`, `.jpe`, `.jp2`, `.pgm`, `.tiff`, `.tif`, `.ppm`
 
 
 
-## :heavy_plus_sign: Adding Images to the `Images` Directory
-All images that are displayed in the picture frame must be stored in the "Images" directory of this project.
+### Adding Images
+All images that are displayed in the picture frame must be stored in the `Images` directory of this project.
 Note that subdirectories in the "Images" directory will not be considered.
 
-### Via Physical Flash/USB Drive
+#### Via Physical Flash/USB Drive
 - TODO
 
-### Remotely Via `scp` Command
+#### Remotely Via `scp` Command
 - TODO
 
-### Remotely Via `ftp` Command
+#### Remotely Via `ftp` Command
 - TODO
 
 
