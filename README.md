@@ -81,9 +81,9 @@ TODO: Need `sudo apt install -y openssh-server` ... maybe seperate .md for ssh s
 7. Install OpenCV system dependencies:
     - `$ sudo apt -y install python3-opencv`
 8. Run the start script
-    - `$ ./start.sh`
+    - `$ ./start`
 
-**NOTE**: *Check out the [`start.sh`](start.sh) script to see what exactly it executes.*
+**NOTE**: *Check out the [`start`](start) script to see what exactly it executes.*
 
 
 ## :boom: Usage
