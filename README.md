@@ -12,6 +12,19 @@ TODO: Explain the remote control blah blah
 
 ## :eyeglasses: Overview
 
+* [Demo](#demo)
+* [Compatibility](#thumbsup-compatibility)
+    * [Minimum System Requirements](#minimum-system-requirements)
+    * [Verified Platforms](#verified-platforms)
+* [Installing and Setup](#rocket-installing-and-setup)
+* [Usage](#boom-usage)
+    * [Image Formats You Can Use](#image-formats-you-can-use)
+    * [Adding Images](#adding-images)
+        * [Via Physical Flash/USB Drive](#via-physical-flashusb-drive)
+        * [Remotely Via scp Command](#remotely-via-scp-command)
+        * [Remotely Via ftp Command](#remotely-via-ftp-command)
+* [Author](#bust_in_silhouette-author)
+* [Licence](#licence)
 
 
 ## Demo
