@@ -47,6 +47,7 @@ TODO: TEST ON WSL!!
 
 
 ## :rocket: Installing and Setup
+TODO: Need `sudo apt install -y openssh-server` ... maybe seperate .md for ssh setup for different devices?
 1. *[If on remote computer]* Enter remote linux device using `ssh`:
     - Linux: `ssh <username/login>@<IP address of picture frame computer>`
     - Windows: `TODO`
@@ -54,7 +55,7 @@ TODO: TEST ON WSL!!
 2. Navigate into user documents directory: 
     - `$ cd ~/Documents`
 3. *[If needed]* Install git:
-    - `$ sudo apt install git-all`
+    - `$ sudo apt -y install git-all`
 4. *[If needed]* Configure git:
     - `$ git config --global user.name "<Your Name"`
     - `$ git config --global user.email "<your_email@example.com>"`
@@ -63,7 +64,7 @@ TODO: TEST ON WSL!!
 6. Change directory into cloned directory:
     - `$ cd Picture-Frame`
 7. Install OpenCV system dependencies:
-    - `(env) $ sudo apt install python3-opencv`
+    - `(env) $ sudo apt -y install python3-opencv`
 8. Run the start script
     - `$ ./start.sh`
 
