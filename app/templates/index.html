@@ -1,8 +1,17 @@
 {% extends "base.html" %} {% block content %}
 
 <div id="index-content">
-  Index content here ... we good ...
-  <a class="waves-effect waves-light btn-large blue">Button</a>
+
+  <a class="waves-effect waves-light btn-large blue">Start</a>
+  <a class="waves-effect waves-light btn-large blue">Stop</a>
+
+  <hr>
+
+
+  <img src="{{ url_for('images', filename='Omitted_Images/Cats/cat4.jpeg')}}" alt="Current Image" height="300">
+  <p>Location: {{ url_for('images', filename='DSC06371-Edit.jpeg')}}</p> 
+
+
 </div>
 
 {% endblock %}

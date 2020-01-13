@@ -12,7 +12,7 @@ from app import api  # Import the app (Controller)
 from app import start_stop  # Starts and stops slideshow
 from app import temp_data
 
-from flask import flash, redirect, request, jsonify
+from flask import jsonify, send_from_directory
 from flask import render_template  # Import the view renderer (View)
 
 from pprint import pprint  # For troubleshooting and debugging
@@ -25,8 +25,23 @@ base_app_dir = os.path.abspath(os.path.dirname(__file__))
 base_dir = os.path.join(base_app_dir, '..')
 
 
+
 ###############################################################################
 
+@api.route('/')
+@api.route('/index', methods=['GET'])
+def index():
+    """
+    REST API endpoint for home page (index).
+    :return: html of index processed by jinja2
+    """
+    logging.info('Successfully hit the index page!!!')
+
+    # Rendering index.html
+    return render_template('index.html', base_app_dir=base_app_dir, base_dir=base_dir)
+
+
+###############################################################################
 
 @api.route('/start', methods=['GET', 'POST'])
 def start():
@@ -50,8 +65,35 @@ def start():
         'message': message
     })
 
+
 ###############################################################################
 
+@api.route('/current_img', methods=['GET', 'POST'])
+def current_img():
+    """
+    REST API endpoint to get the name and path to current img
+    :return: json confirmation message and image name and path
+    """
+    # Loading the name of current image
+    img_filename = "NOTHING.jpg"
+
+    # Creating the path to current image
+    img_path = os.path.join(base_dir, 'Images', img_filename)
+
+    success = True
+    message = "Successfully found current image"
+
+    # Logging message
+    logging.info(message) if success else logging.error(message)
+    return jsonify({
+        'success': success,
+        'message': message,
+        'current_img_filename': img_filename,
+        'current_img_path': img_path
+    })
+
+
+###############################################################################
 
 @api.route('/stop', methods=['GET', 'POST'])
 def stop():
@@ -177,8 +219,24 @@ def kill():
         'message': message
     })
 
+
 ###############################################################################
 
+@api.route('/Images/<path:filename>')
+def images(filename):
+    """
+    REST API Securely send files form image directory.
+    Essentially this is creating a static directory
+    to reference from just like the "static" directory.
+    :param filename: The specific file name (or relative path)
+    :return: file from file directory
+    """
+    print('IMAGES')
+    print(os.path.join(api.root_path + '/..' + '/Images/', filename))
+    return send_from_directory(directory=api.root_path + '/..' + '/Images/', filename=filename)
+
+
+###############################################################################
 
 @api.errorhandler(404)
 def page_not_found(e):
@@ -187,26 +245,6 @@ def page_not_found(e):
     :return: html of 404 page processed by jinja2
     """
     return render_template('404.html'), 404
-
-
-###############################################################################
-
-@api.route('/')
-@api.route('/index', methods=['GET'])
-def index():
-    """
-    REST API endpoint for home page (index).
-    :return: html of index processed by jinja2
-    """
-    logging.info('Successfully hit the index page!!!')
-
-    # Rendering index.html
-    return render_template('index.html')
-
-
-
-
-
 
 
 
