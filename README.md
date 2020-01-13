@@ -1,12 +1,12 @@
 <h1 align="center">Picture-Frame :eyes:</h1>
 
 This is a picture frame slideshow for running on linux systems that is connected to a display/monitor. These linux systems may include Raspian, Ubuntu, Mint, or even WSL (Windows Subsystem for Linux).
-The slideshow is displayed on a connected display device / monitor in either horizontal (landscape) or vertical (portrait) orientation.
+The image slideshow is displayed on a connected display, monitor, or projector in either horizontal (landscape) or vertical (portrait) orientation.
 TODO: Explain the remote control blah blah
 
 
 ### Very Basically ...
-1. You run this on a computer that is connected to a monitor or display.
+1. You run this on a computer that is connected to a monitor, display, or projector.
 2. You will then be able to control the shown images on the monitor using a website that you can access with a computer, phone, or tablet.
 3. You can access this website as long as you are on your local or home network.
 
