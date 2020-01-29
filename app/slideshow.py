@@ -8,10 +8,10 @@ import imutils
 from math import ceil
 import numpy as np
 import logging
+import requests
 
 from app import effects  # Image transition effects
 from app import utility  # Useful and custom functions
-
 
 ###############################################################################
 
@@ -42,7 +42,7 @@ def slideshow_process(process_is_running):
 
     # Path for images
     imageDirectory = "Images"  # TODO: Load from configurations: app/config/defaults.yml
-    imageDirectory = os.path.join(currentDirectory, imageDirectory) + "//"
+    imageDirectory = os.path.join(currentDirectory, imageDirectory) + "/"
 
     # Array of opencv image objects
     imageNames = []
@@ -117,6 +117,36 @@ def slideshow_process(process_is_running):
             else:
                 # Zoom in transition effect
                 effects.effect_zoom_out(imageFileObject_begin, imageFileObject_end)
+
+
+            # Storing information of current image by sending it to other/origin process
+            current_status = {
+                'img_filename': imageNames[img_end_index],
+                'img_abs_path': imagePaths[img_end_index],
+                'img_rel_path': imagePaths[img_end_index].strip(currentDirectory)
+            }
+
+            current_status = {
+                'img_delay_ms': image_delay,
+                'effect_delay_ms': -1,
+                'img_filename': imageNames[img_end_index],
+                'img_abs_path': imagePaths[img_end_index],
+                'img_rel_path': imagePaths[img_end_index].strip(currentDirectory),
+                'img_index': img_end_index,
+                'img_height_px': imageFileObject_end.shape[0],
+                'img_width_px': imageFileObject_end.shape[1],
+                'effect_name': 'TODO',
+                'effect_index': effect_index,
+                'display_index': -1,
+                'display_width_px': screen_width_px,
+                'display_height_px': screen_height_px
+            }
+
+            response = requests.post(url='http://localhost:5555/report_slidewhow_status', params=current_status)
+            if not response.ok:
+                logging.error('Failed to report current image information to main process. Response text: {}'.format(response.text))
+            else:
+                logging.debug('Successfully reportedcurrent image information to main process. Response text: {}'.format(response.text))
 
             # Waiting and watching out for key press to quit
             if cv2.waitKey(image_delay) == ord(' '):

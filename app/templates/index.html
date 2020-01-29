@@ -1,17 +1,30 @@
 {% extends "base.html" %} {% block content %}
 
 <div id="index-content">
+  <a
+    class="waves-effect waves-light btn-large blue"
+    id="btn-slideshow-on"
+    title="Turns slideshow on"
+    onclick="start_slideshow()"
+    >Start</a
+  >
+  <a
+    class="waves-effect waves-light btn-large blue"
+    id="btn-slideshow-off"
+    title="Turns slideshow off"
+    onclick="stop_slideshow()"
+    >Stop</a
+  >
 
-  <a class="waves-effect waves-light btn-large blue">Start</a>
-  <a class="waves-effect waves-light btn-large blue">Stop</a>
+  <hr />
 
-  <hr>
-
-
-  <img src="{{ url_for('images', filename='DSC05177.JPG')}}" alt="Current Image" height="300">
-  <p>Location: {{ url_for('images', filename='DSC06371-Edit.jpeg')}}</p> 
-
-
+  <img
+    id="img-preview"
+    src="{{ url_for('images', filename='DSC05177.JPG')}}"
+    alt="Current Image"
+    height="300"
+  />
+  <p id="img-filepath">{{ url_for('images', filename='DSC06371-Edit.jpeg')}}</p>
 </div>
 
 {% endblock %}
