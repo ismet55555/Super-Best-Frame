@@ -10,10 +10,10 @@ import subprocess
 
 from app import api  # Import the app (Controller)
 from app import start_stop  # Starts and stops slideshow
-from app import temp_data
+from app import data_storage
 
-from flask import flash, redirect, request, jsonify
-from flask import render_template  # Import the view renderer (View)
+from flask import jsonify, send_from_directory
+from flask import render_template, request  # Import the view renderer (View)
 
 from pprint import pprint  # For troubleshooting and debugging
 
@@ -25,8 +25,23 @@ base_app_dir = os.path.abspath(os.path.dirname(__file__))
 base_dir = os.path.join(base_app_dir, '..')
 
 
+
 ###############################################################################
 
+@api.route('/')
+@api.route('/index', methods=['GET'])
+def index():
+    """
+    REST API endpoint for home page (index).
+    :return: html of index processed by jinja2
+    """
+    logging.info('Successfully hit the index page!!!')
+
+    # Rendering index.html
+    return render_template('index.html', base_app_dir=base_app_dir, base_dir=base_dir)
+
+
+###############################################################################
 
 @api.route('/start', methods=['GET', 'POST'])
 def start():
@@ -50,8 +65,68 @@ def start():
         'message': message
     })
 
+
 ###############################################################################
 
+@api.route('/current_img', methods=['GET'])
+def current_img():
+    """
+    REST API endpoint to get the name and path to current img
+    :return: json confirmation message and image name and path
+    """
+
+    # Loading the info of current image
+    img_filename = data_storage.slideshow_current_img_filename
+    img_abs_path = data_storage.slideshow_current_img_abs_path
+    img_rel_path = data_storage.slideshow_current_img_rel_path
+    success = True
+    message = "Successfully found current image"
+
+    # Logging message
+    logging.info(message) if success else logging.error(message)
+    return jsonify({
+        'success': success,
+        'message': message,
+        'img_filename': img_filename,
+        'img_abs_path': img_abs_path,
+        'img_rel_path': img_rel_path
+    })
+
+
+@api.route('/current_img_info', methods=['POST'])
+def current_img_info():
+    """
+    REST API endpoint to set the current immage info
+    :return: json confirmation message and image name and path
+    """
+    ########################################
+    # TODO: Only allow internal calls from, change endpoint to somethign like /utility/current_img_info
+    ########################################
+
+    try:
+        data_storage.slideshow_current_img_filename = request.args.get('img_filename', default='', type=str).strip()
+        data_storage.slideshow_current_img_abs_path = request.args.get('img_abs_path', default='', type=str).strip()
+        data_storage.slideshow_current_img_rel_path = request.args.get('img_rel_path', default='', type=str).strip()
+
+        success = True
+        message = "Successfully reported current image information"
+    except Exception as e:
+        success = False
+        message = "Failed to report current image information. Exception: {}".format(e)
+
+    # Logging message
+    logging.info(message) if success else logging.error(message)
+    return jsonify({
+        'success': success,
+        'message': message,
+        'reported_filename': data_storage.slideshow_current_img_filename,
+        'reported_img_abs_path': data_storage.slideshow_current_img_abs_path,
+        'reported_img_rel_path': data_storage.slideshow_current_img_rel_path
+    })
+
+
+
+###############################################################################
 
 @api.route('/stop', methods=['GET', 'POST'])
 def stop():
@@ -78,42 +153,65 @@ def stop():
 ###############################################################################
 
 
-@api.route('/status', methods=['GET', 'POST'])
+@api.route('/report_slidewhow_status', methods=['POST'])
+def report_slideshow_status():
+    """
+    REST API endpoint to set the current status of the slideshow
+    :return: json confirmation message and image name and path
+    """
+    try:
+        # Basic slideshow settings
+        data_storage.settings['img_delay_ms'] = request.args.get('img_delay_ms', default=-1, type=int)
+        data_storage.settings['img_order'] = request.args.get('img_order', default='', type=str).strip()
+
+        # Current Image Information
+        data_storage.img_now['img_now_filename'] = request.args.get('img_now_filename', default='', type=str).strip()
+        data_storage.img_now['img_now_abs_path'] = request.args.get('img_now_abs_path', default='', type=str).strip()
+        data_storage.img_now['img_now_rel_path'] = request.args.get('img_now_rel_path', default='', type=str).strip()
+        data_storage.img_now['img_now_index'] = request.args.get('img_now_index', default=-1, type=int)
+        data_storage.img_now['img_now_height_px'] = request.args.get('img_now_height_px', default=-1, type=int)
+        data_storage.img_now['img_now_width_px'] = request.args.get('img_now_width_px', default=-1, type=int)
+
+        # Previous Image Information
+        data_storage.img_last['img_last_filename'] = request.args.get('img_last_filename', default='', type=str).strip()
+        data_storage.img_last['img_last_abs_path'] = request.args.get('img_last_abs_path', default='', type=str).strip()
+        data_storage.img_last['img_last_rel_path'] = request.args.get('img_last_rel_path', default='', type=str).strip()
+        data_storage.img_last['img_last_index'] = request.args.get('img_last_index', default=-1, type=int)
+        data_storage.img_last['img_last_height_px'] = request.args.get('img_last_height_px', default=-1, type=int)
+        data_storage.img_last['img_last_width_px'] = request.args.get('img_last_width_px', default=-1, type=int)
+
+        # Current image transition effect information
+        data_storage.effect['effect_name'] = request.args.get('effect_name', default='', type=str).strip()
+        data_storage.effect['effect_index'] = request.args.get('effect_index', default=-1, type=int)
+        data_storage.effect['effect_mode'] = request.args.get('effect_mode', default='', type=str).strip()
+        data_storage.effect['effect_delay_ms'] = request.args.get('effect_delay_ms', default=-1, type=int)
+
+        # Display information
+        data_storage.display['display_index'] = request.args.get('display_index', default=-1, type=int)
+        data_storage.display['display_width_px'] = request.args.get('display_width_px', default=-1, type=int)
+        data_storage.display['display_height_px'] = request.args.get('display_height_px', default=-1, type=int)
+
+        success = True
+        message = "Successfully reported current image information"
+    except Exception as e:
+        success = False
+        message = "Failed to report current image information. Exception: {}".format(e)
+
+    # Logging message
+    logging.info(message) if success else logging.error(message)
+    return jsonify({
+        'success': success,
+        'message': message
+    })
+
+
+
+@api.route('/status', methods=['GET'])
 def status():
     """
     REST API endpoint to get the complete status of slideshow
     :return: json confirmation message
     """
-
-    # FIXME: Make sure to update the temp_data stuff where appropriate
-
-    status = {}
-    status['running'] = not temp_data.slideshow_thread_stop
-    if temp_data.slideshow_thread:
-        thread_id = temp_data.slideshow_thread.ident
-    else:
-        thread_id = None
-
-    status['thread_id'] = thread_id
-
-    img = {}
-    img['img_name'] = "TEMP NAME"
-    img['img_index'] = 0
-    img['img_height_px'] = 999
-    img['img_width_px'] = 888
-
-    effect = {}
-    effect['effect_name'] = "TEMP EFFECT NAME"
-    effect['effect_index'] = 0
-
-    settings = {}
-    settings['img_delay_ms'] = 1000
-    settings['effect_delay_ms'] = 50
-    
-    display = {}
-    display['display_index'] = 0
-    display['display_width_px'] = 1920
-    display['display_height_px'] = 720
 
     success = True
 
@@ -121,15 +219,31 @@ def status():
     logging.info(status) if success else logging.error(status)
     return jsonify({
         'success': success,
-        'status': status,
-        'img' : img,
-        'effect': effect,
-        'settings': settings,
-        'display': display
+        'slideshow': data_storage.slideshow,
+        'img_now': data_storage.img_now,
+        'img_last': data_storage.img_last,
+        'effect': data_storage.effect,
+        'settings': data_storage.settings,
+        'display': data_storage.display
     })
 
 ###############################################################################
 
+@api.route('/api_map', methods=['GET'])
+def api_map():
+    """
+    REST API endpoint to show all possible api endpoints
+    :return: json confirmation message
+    """
+
+    return jsonify({
+        '/start': "Start the image slideshow",
+        '/stop' : "Stop the image slideshow",
+        '/kill' : "Forcefully kill all system processes related with this web app",
+        'TODO'  : "TODO"
+    })
+
+###############################################################################
 
 @api.route('/kill', methods=['GET', 'POST'])
 def kill():
@@ -150,14 +264,14 @@ def kill():
                 process_parts = process.split(' ')
                 # Strip all white space
                 map(str.strip, process_parts)
-                # Filter temp_data from blank temp_data
+                # Filter data_storage from blank data_storage
                 process_columns = []
                 for process_part in process_parts:
                     if process_part != '':
                         process_columns.append(process_part)
                 # Store the PID for process (second column)
                 pids.append(process_columns[1])
-            logging.info('Web application endpoint "/shutdown" was engaged. Terminating web application ...')
+            logging.info('Web application endpoint "/kill" was engaged. Terminating web application ...')
             # Remove duplicates
             pids = list(set(pids))
             # Kill application (ommiting PID heading item)
@@ -177,8 +291,24 @@ def kill():
         'message': message
     })
 
+
 ###############################################################################
 
+@api.route('/Images/<path:filename>')
+def images(filename):
+    """
+    REST API Securely send files form image directory.
+    Essentially this is creating a static directory
+    to reference from just like the "static" directory.
+    :param filename: The specific file name (or relative path)
+    :return: file from file directory
+    """
+    print('IMAGES')
+    print(os.path.join(api.root_path + '/..' + '/Images/', filename))
+    return send_from_directory(directory=api.root_path + '/..' + '/Images/', filename=filename)
+
+
+###############################################################################
 
 @api.errorhandler(404)
 def page_not_found(e):
@@ -188,87 +318,4 @@ def page_not_found(e):
     """
     return render_template('404.html'), 404
 
-
 ###############################################################################
-
-@api.route('/')
-@api.route('/index', methods=['GET'])
-def index():
-    """
-    REST API endpoint for home page (index).
-    :return: html of index processed by jinja2
-    """
-    logging.info('Successfully hit the index page!!!')
-
-    # Rendering index.html
-    return render_template('index.html')
-
-
-
-
-
-
-
-
-
-
-
-###############################################################################
-
-
-
-
-
-
-
-
-
-# import cv2
-# import sys
-# import threading
-
-# def image_test():
-#     currentDirectory = os.path.abspath(os.path.dirname(sys.argv[0]))
-#     imageDirectory = "Images"
-#     imageDirectory = os.path.join(currentDirectory, imageDirectory) + "//"
-#     filename = 'DSC02055.JPG'
-
-#     print('cv2.namedWindow')
-#     cv2.namedWindow('Image', cv2.WND_PROP_FULLSCREEN)
-
-#     print('cv2.setWindowProperty')
-#     cv2.setWindowProperty("Image", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
-
-#     img = cv2.imread(imageDirectory + filename, cv2.IMREAD_UNCHANGED)
-
-#     while True:
-#         print('cv2.imshow')
-#         cv2.imshow('Image', img)
-#         if cv2.waitKey(1500) == ord('q'):
-#             break
-
-#     print('cv2.destroyAllWindows()')
-#     cv2.destroyAllWindows()
-
-
-# @api.route('/test', methods=['GET', 'POST'])
-# def test():
-#     """
-#     REST API endpoint to test some stuff
-#     :return: json confirmation message
-#     """
-
-#     # thread = threading.Thread(target=image_test)
-#     # thread.start()
-
-#     image_test()
-
-#     success = True
-#     message = 'TESTING'
-
-#     # Logging message
-#     logging.info(message) if success else logging.error(message)
-#     return jsonify({
-#         'success': success,
-#         'message': message
-#     })

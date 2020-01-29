@@ -20,5 +20,31 @@ Set up entire flask server with front end?
     - Option to upload images
 
 
+Create a Logo for this whole thing
+    - Make sure to add to the README.md
+
+Pick a better name:
+    - Super Frames
+    - Best Frame Forever
+    - Super Best Frame
+    - Remote Frame
+    - Framote
+    - Framio / Displayio
+    - Frame On!
+    - Framer
+    - Remote Frame Server 
+    - Remote Display Server
+    - Uber Frame / Uber Display
+    - Display Daddy
+    - Do Da Display
 
 
+README.md
+	Add a gif of the entire installation and setup process
+	Add a gif of the usage 
+
+
+Experiment with WebSockets to speed up Image displaying on page 
+    - Python - flask-socketio
+    - Javascript - SocketJS
+    - https://codeburst.io/building-your-first-chat-application-using-flask-in-7-minutes-f98de4adfa5d

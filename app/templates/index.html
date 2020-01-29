@@ -1,7 +1,38 @@
 {% extends "base.html" %} {% block content %}
 
 <div id="index-content">
-  Index content here ... we good ...
+  <a
+    class="waves-effect waves-light btn-large blue"
+    id="btn-slideshow-on"
+    title="Turns slideshow on"
+    onclick="start_slideshow()"
+    >Start</a
+  >
+  <a
+    class="waves-effect waves-light btn-large blue"
+    id="btn-slideshow-off"
+    title="Turns slideshow off"
+    onclick="stop_slideshow()"
+    >Stop</a
+  >
+
+  <hr />
+
+  <img
+    id="img-last-preview"
+    src="{{ url_for('images', filename='DSC05177.JPG')}}"
+    alt="Previous Image"
+    height="300"
+  />
+  <p id="img-last-filepath">{{ url_for('images', filename='DSC06371-Edit.jpeg')}}</p>
+
+  <img
+    id="img-now-preview"
+    src="{{ url_for('images', filename='DSC05177.JPG')}}"
+    alt="Current Image"
+    height="300"
+  />
+  <p id="img-now-filepath">{{ url_for('images', filename='DSC06371-Edit.jpeg')}}</p>
 </div>
 
 {% endblock %}

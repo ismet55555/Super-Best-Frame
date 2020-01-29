@@ -1,11 +1,17 @@
 #!/usr/bin/env python3
 
+# ---------------------------------------------------------
+# Starting and Stopping of the Image Slideshow
+# ---------------------------------------------------------
+
 import logging
 
-from app import temp_data
+from app import data_storage
 from app import slideshow
 
 from multiprocessing import Process, Value
+import ctypes
+
 
 ###############################################################################
 
@@ -23,12 +29,16 @@ def start_slideshow():
         process_is_running.value = True
 
         # Creating the background process for the slideshow
-        temp_data.slideshow_process = Process(target=slideshow.slideshow_process, args=[process_is_running])
+        data_storage.process = Process(target=slideshow.slideshow_process, args=[process_is_running])
 
         # Starting the slideshow
-        temp_data.slideshow_process.start()
+        data_storage.process.start()
 
-        logging.info("Successfully started independent slideshow process (Process: {})".format(temp_data.slideshow_process.ident))
+        # Log it
+        data_storage.slideshow['process'] = data_storage.process.ident
+        data_storage.slideshow['running'] = True
+
+        logging.info("Successfully started independent slideshow process (Process: {})".format(data_storage.process.ident))
         return True
     else:
         logging.critical("The picture-frame slideshow is already running")
@@ -42,16 +52,20 @@ def stop_slideshow():
     :return: success
     """
     if process_is_running.value:
-        logging.info("Stopping independent slideshow process (Process: {}) ...".format(temp_data.slideshow_process.ident))
+        logging.info("Stopping independent slideshow process (Process: {}) ...".format(data_storage.process.ident))
 
         # Signaling the process to stop through the Queue
         process_is_running.value = False
 
         # Waiting for the independent process to stop
-        temp_data.slideshow_process.join()
+        data_storage.process.join()
 
         # Closing the independent process
-        temp_data.slideshow_process.close()
+        data_storage.process.close()
+
+        # Log it
+        data_storage.slideshow['process'] = -1
+        data_storage.slideshow['running'] = False
 
         logging.info("Successfully stopped independent slideshow process")
         return True
