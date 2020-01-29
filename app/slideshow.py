@@ -120,26 +120,45 @@ def slideshow_process(process_is_running):
 
 
             # Storing information of current image by sending it to other/origin process
-            current_status = {
-                'img_filename': imageNames[img_end_index],
-                'img_abs_path': imagePaths[img_end_index],
-                'img_rel_path': imagePaths[img_end_index].strip(currentDirectory)
-            }
-
-            current_status = {
+            # TODO: Nest this Dictionary!
+            current_status_settings = {
                 'img_delay_ms': image_delay,
-                'effect_delay_ms': -1,
-                'img_filename': imageNames[img_end_index],
-                'img_abs_path': imagePaths[img_end_index],
-                'img_rel_path': imagePaths[img_end_index].strip(currentDirectory),
-                'img_index': img_end_index,
-                'img_height_px': imageFileObject_end.shape[0],
-                'img_width_px': imageFileObject_end.shape[1],
+                'img_order': 'random'
+            }
+            current_status_img_now = {
+                'img_now_filename': imageNames[img_end_index],
+                'img_now_abs_path': imagePaths[img_end_index],
+                'img_now_rel_path': imagePaths[img_end_index].strip(currentDirectory),
+                'img_now_index': img_end_index,
+                'img_now_height_px': imageFileObject_end.shape[0],
+                'img_now_width_px': imageFileObject_end.shape[1]
+            }
+            current_status_img_last = {
+                'img_last_filename': imageNames[img_begin_index],
+                'img_last_abs_path': imagePaths[img_begin_index],
+                'img_last_rel_path': imagePaths[img_begin_index].strip(currentDirectory),
+                'img_last_index': img_begin_index,
+                'img_last_height_px': imageFileObject_begin.shape[0],
+                'img_last_width_px': imageFileObject_begin.shape[1]
+            }
+            current_status_effect = {
                 'effect_name': 'TODO',
                 'effect_index': effect_index,
+                'effect_mode': 'random',
+                'effect_delay_ms': -1
+            }
+            current_status_display = {
                 'display_index': -1,
                 'display_width_px': screen_width_px,
                 'display_height_px': screen_height_px
+            }
+
+            current_status = {
+                **current_status_settings,
+                **current_status_img_now,
+                **current_status_img_last,
+                **current_status_effect,
+                **current_status_display
             }
 
             response = requests.post(url='http://localhost:5555/report_slidewhow_status', params=current_status)

@@ -19,12 +19,20 @@
   <hr />
 
   <img
-    id="img-preview"
+    id="img-last-preview"
+    src="{{ url_for('images', filename='DSC05177.JPG')}}"
+    alt="Previous Image"
+    height="300"
+  />
+  <p id="img-last-filepath">{{ url_for('images', filename='DSC06371-Edit.jpeg')}}</p>
+
+  <img
+    id="img-now-preview"
     src="{{ url_for('images', filename='DSC05177.JPG')}}"
     alt="Current Image"
     height="300"
   />
-  <p id="img-filepath">{{ url_for('images', filename='DSC06371-Edit.jpeg')}}</p>
+  <p id="img-now-filepath">{{ url_for('images', filename='DSC06371-Edit.jpeg')}}</p>
 </div>
 
 {% endblock %}

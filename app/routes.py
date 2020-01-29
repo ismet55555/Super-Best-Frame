@@ -162,19 +162,29 @@ def report_slideshow_status():
     try:
         # Basic slideshow settings
         data_storage.settings['img_delay_ms'] = request.args.get('img_delay_ms', default=-1, type=int)
-        data_storage.settings['effect_delay_ms'] = request.args.get('effect_delay_ms', default=-1, type=int)
+        data_storage.settings['img_order'] = request.args.get('img_order', default='', type=str).strip()
 
         # Current Image Information
-        data_storage.img['img_filename'] = request.args.get('img_filename', default='', type=str).strip()
-        data_storage.img['img_abs_path'] = request.args.get('img_path', default='', type=str).strip()
-        data_storage.img['img_rel_path'] = request.args.get('img_rel_path', default='', type=str).strip()
-        data_storage.img['img_index'] = request.args.get('img_index', default=-1, type=int)
-        data_storage.img['img_height_px'] = request.args.get('img_height_px', default=-1, type=int)
-        data_storage.img['img_width_px'] = request.args.get('img_width_px', default=-1, type=int)
+        data_storage.img_now['img_now_filename'] = request.args.get('img_now_filename', default='', type=str).strip()
+        data_storage.img_now['img_now_abs_path'] = request.args.get('img_now_abs_path', default='', type=str).strip()
+        data_storage.img_now['img_now_rel_path'] = request.args.get('img_now_rel_path', default='', type=str).strip()
+        data_storage.img_now['img_now_index'] = request.args.get('img_now_index', default=-1, type=int)
+        data_storage.img_now['img_now_height_px'] = request.args.get('img_now_height_px', default=-1, type=int)
+        data_storage.img_now['img_now_width_px'] = request.args.get('img_now_width_px', default=-1, type=int)
+
+        # Previous Image Information
+        data_storage.img_last['img_last_filename'] = request.args.get('img_last_filename', default='', type=str).strip()
+        data_storage.img_last['img_last_abs_path'] = request.args.get('img_last_abs_path', default='', type=str).strip()
+        data_storage.img_last['img_last_rel_path'] = request.args.get('img_last_rel_path', default='', type=str).strip()
+        data_storage.img_last['img_last_index'] = request.args.get('img_last_index', default=-1, type=int)
+        data_storage.img_last['img_last_height_px'] = request.args.get('img_last_height_px', default=-1, type=int)
+        data_storage.img_last['img_last_width_px'] = request.args.get('img_last_width_px', default=-1, type=int)
 
         # Current image transition effect information
         data_storage.effect['effect_name'] = request.args.get('effect_name', default='', type=str).strip()
         data_storage.effect['effect_index'] = request.args.get('effect_index', default=-1, type=int)
+        data_storage.effect['effect_mode'] = request.args.get('effect_mode', default='', type=str).strip()
+        data_storage.effect['effect_delay_ms'] = request.args.get('effect_delay_ms', default=-1, type=int)
 
         # Display information
         data_storage.display['display_index'] = request.args.get('display_index', default=-1, type=int)
@@ -210,7 +220,8 @@ def status():
     return jsonify({
         'success': success,
         'slideshow': data_storage.slideshow,
-        'img' : data_storage.img,
+        'img_now': data_storage.img_now,
+        'img_last': data_storage.img_last,
         'effect': data_storage.effect,
         'settings': data_storage.settings,
         'display': data_storage.display

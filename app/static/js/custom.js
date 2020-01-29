@@ -91,13 +91,15 @@ function stop_doing_stuff() {
 }
 function doing_stuff() {
     // do stuff here
-    let response = http_request_helper('GET', null, 5555, 'current_img')
+    let response = http_request_helper('GET', null, 5555, 'status')
     success = (response != null) ? JSON.parse(response)['success'] : false;
+
     if (success) {
-        document.getElementById("img-preview").src = JSON.parse(response)['img_rel_path'];
-        document.getElementById("img-filepath").innerText = JSON.parse(response)['img_rel_path']
+        document.getElementById("img-last-preview").src = JSON.parse(response)['img_last']['img_last_rel_path'];
+        document.getElementById("img-last-filepath").innerText = JSON.parse(response)['img_last']['img_last_rel_path']
 
-
+        document.getElementById("img-now-preview").src = JSON.parse(response)['img_now']['img_now_rel_path'];
+        document.getElementById("img-now-filepath").innerText = JSON.parse(response)['img_now']['img_now_rel_path']
     } else {
         console.error('Failed to get current image information')
     }
