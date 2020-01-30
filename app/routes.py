@@ -68,66 +68,6 @@ def start():
 
 ###############################################################################
 
-@api.route('/current_img', methods=['GET'])
-def current_img():
-    """
-    REST API endpoint to get the name and path to current img
-    :return: json confirmation message and image name and path
-    """
-
-    # Loading the info of current image
-    img_filename = data_storage.slideshow_current_img_filename
-    img_abs_path = data_storage.slideshow_current_img_abs_path
-    img_rel_path = data_storage.slideshow_current_img_rel_path
-    success = True
-    message = "Successfully found current image"
-
-    # Logging message
-    logging.info(message) if success else logging.error(message)
-    return jsonify({
-        'success': success,
-        'message': message,
-        'img_filename': img_filename,
-        'img_abs_path': img_abs_path,
-        'img_rel_path': img_rel_path
-    })
-
-
-@api.route('/current_img_info', methods=['POST'])
-def current_img_info():
-    """
-    REST API endpoint to set the current immage info
-    :return: json confirmation message and image name and path
-    """
-    ########################################
-    # TODO: Only allow internal calls from, change endpoint to somethign like /utility/current_img_info
-    ########################################
-
-    try:
-        data_storage.slideshow_current_img_filename = request.args.get('img_filename', default='', type=str).strip()
-        data_storage.slideshow_current_img_abs_path = request.args.get('img_abs_path', default='', type=str).strip()
-        data_storage.slideshow_current_img_rel_path = request.args.get('img_rel_path', default='', type=str).strip()
-
-        success = True
-        message = "Successfully reported current image information"
-    except Exception as e:
-        success = False
-        message = "Failed to report current image information. Exception: {}".format(e)
-
-    # Logging message
-    logging.info(message) if success else logging.error(message)
-    return jsonify({
-        'success': success,
-        'message': message,
-        'reported_filename': data_storage.slideshow_current_img_filename,
-        'reported_img_abs_path': data_storage.slideshow_current_img_abs_path,
-        'reported_img_rel_path': data_storage.slideshow_current_img_rel_path
-    })
-
-
-
-###############################################################################
-
 @api.route('/stop', methods=['GET', 'POST'])
 def stop():
     """
@@ -152,11 +92,67 @@ def stop():
 
 ###############################################################################
 
-
-@api.route('/report_slidewhow_status', methods=['POST'])
-def report_slideshow_status():
+@api.route('/status', methods=['GET'])
+def status():
     """
-    REST API endpoint to set the current status of the slideshow
+    REST API endpoint to get the complete status of slideshow
+    :return: json confirmation message
+    """
+    success = True
+    message = "Successfully retrieved current slideshow status/information"
+    # Logging message
+    logging.debug(message) if success else logging.error(message)
+    return jsonify({
+        'success': success,
+        'slideshow': data_storage.slideshow,
+        'img_now': data_storage.img_now,
+        'img_last': data_storage.img_last,
+        'effect': data_storage.effect,
+        'settings': data_storage.settings,
+        'display': data_storage.display
+    })
+
+###############################################################################
+
+@api.route('/controls/pause_continue', methods=['POST'])
+def pause_continue():
+    """
+    REST API endpoint to TODO
+    :return: json confirmation message
+    """
+    data_storage.controls['pause_continue'] = request.args.get('pause', default=False, type=bool)
+
+    success = True
+    message = "Successfully posted/saved pause_continue value of '{}'".format(data_storage.controls['pause_continue'])
+    # Logging message
+    logging.debug(message) if success else logging.error(message)
+    return jsonify({
+        'success': success
+    })
+
+###############################################################################
+
+
+@api.route('/utility/process_communication_get', methods=['GET'])
+def process_communication_get():
+    """
+    REST API endpoint to get current status commands for slideshow
+    :return: json confirmation message and image name and path
+    """
+    success = True
+    message = "Successfully retrieved process communication"
+    # Logging message
+    logging.debug(message) if success else logging.error(message)
+    return jsonify({
+        'success': success,
+        'controls': data_storage.controls
+    })
+
+
+@api.route('/utility/process_communication_post', methods=['POST'])
+def process_communication_post():
+    """
+    REST API endpoint to set/post the current status of the slideshow
     :return: json confirmation message and image name and path
     """
     try:
@@ -198,33 +194,10 @@ def report_slideshow_status():
         message = "Failed to report current image information. Exception: {}".format(e)
 
     # Logging message
-    logging.info(message) if success else logging.error(message)
+    logging.debug(message) if success else logging.error(message)
     return jsonify({
         'success': success,
         'message': message
-    })
-
-
-
-@api.route('/status', methods=['GET'])
-def status():
-    """
-    REST API endpoint to get the complete status of slideshow
-    :return: json confirmation message
-    """
-
-    success = True
-
-    # Logging message
-    logging.info(status) if success else logging.error(status)
-    return jsonify({
-        'success': success,
-        'slideshow': data_storage.slideshow,
-        'img_now': data_storage.img_now,
-        'img_last': data_storage.img_last,
-        'effect': data_storage.effect,
-        'settings': data_storage.settings,
-        'display': data_storage.display
     })
 
 ###############################################################################
@@ -238,9 +211,10 @@ def api_map():
 
     return jsonify({
         '/start': "Start the image slideshow",
-        '/stop' : "Stop the image slideshow",
-        '/kill' : "Forcefully kill all system processes related with this web app",
-        'TODO'  : "TODO"
+        '/stop': "Stop the image slideshow",
+        '/status': "Current status/information of slideshow",
+        '/kill': "Forcefully kill all system processes related with this web application",
+        'TODO': "TODO"
     })
 
 ###############################################################################
@@ -303,8 +277,6 @@ def images(filename):
     :param filename: The specific file name (or relative path)
     :return: file from file directory
     """
-    print('IMAGES')
-    print(os.path.join(api.root_path + '/..' + '/Images/', filename))
     return send_from_directory(directory=api.root_path + '/..' + '/Images/', filename=filename)
 
 

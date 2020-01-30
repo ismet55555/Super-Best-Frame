@@ -14,6 +14,13 @@
 # Slideshow process reference
 process = None
 
+
+# Slideshow controls
+controls = {}
+controls['pause_continue'] = False
+
+
+
 # Slideshow information
 slideshow = {}
 slideshow['running'] = False
@@ -48,7 +55,6 @@ effect['effect_name'] = ''
 effect['effect_index'] = -1
 effect['effect_mode'] = 'random'
 effect['effect_delay_ms'] = 50
-
 
 # Display information
 display = {}
