@@ -1,4 +1,4 @@
-<h1 align="center">Picture-Frame :eyes:</h1>
+<h1 align="center">Picture-Frame :bowtie:</h1>
 
 This is a picture frame slideshow for running on linux systems that is connected to a display/monitor. These linux systems may include Raspian, Ubuntu, Mint, or even WSL (Windows Subsystem for Linux).
 The image slideshow is displayed on a connected display, monitor, or projector in either horizontal (landscape) or vertical (portrait) orientation.
