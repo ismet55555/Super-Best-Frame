@@ -2,8 +2,8 @@
 
 This is a picture frame slideshow for running on linux systems that is connected to a display/monitor. These linux systems may include Raspian, Ubuntu, Mint, or even WSL (Windows Subsystem for Linux).
 The image slideshow is displayed on a connected display, monitor, or projector in either horizontal (landscape) or vertical (portrait) orientation.
-TODO: Explain the remote control blah blah
 
+You can then control the picture frame slideshow's behavior using a simple browser based web interface of the local network at port `5555`. That is, you can access this web interface with `http://<IP Address of Picture Frame Host>:55555`
 
 ### Very Basically ...
 1. You run this on a computer that is connected to a monitor, display, or projector.
@@ -12,7 +12,6 @@ TODO: Explain the remote control blah blah
 
 ## :eyeglasses: Overview
 
-* [Demo](#demo)
 * [Compatibility](#thumbsup-compatibility)
     * [Minimum System Requirements](#minimum-system-requirements)
     * [Verified Platforms](#verified-platforms)
@@ -25,16 +24,6 @@ TODO: Explain the remote control blah blah
         * [Remotely Via ftp Command](#remotely-via-ftp-command)
 * [Author](#bust_in_silhouette-author)
 * [Licence](#licence)
-
-
-## Demo
-`picture-frame` is able to create a beautiful mointor/display slideshows
-
-<p align="center">
-  <img width="700" align="center" src="https://user-images.githubusercontent.com/9840435/60266022-72a82400-98e7-11e9-9958-f9004c2f97e1.gif" alt="demo"/>
-</p>
-
-
 
 
 ## :thumbsup: Compatibility
@@ -57,16 +46,14 @@ This program has been tested on a limited number of different systems, this is w
 | Atomic Pi *(Lubuntu 18.04)*    |                     |
 | Ubuntu 16.04 and up            |                     |
 
-TODO: TEST ON WSL!!
+I have not tried it out on `Microsoft WSL (Windows Subsystem for Linux)`, but may work on it as well.
 
 
 
 ## :rocket: Installing and Setup
-TODO: Need `sudo apt install -y openssh-server` ... maybe seperate .md for ssh setup for different devices?
 1. *[If on remote computer]* Enter remote linux device using `ssh`:
-    - Linux: `ssh <username/login>@<IP address of picture frame computer>`
-    - Windows: `TODO`
-    - MAC: `TODO`
+    - MAC/Linux Terminal, Windows Powershell: `ssh <username/login>@<IP address of picture frame computer>`
+    - May need to enable SSH on remote linux host computer: `sudo apt install -y openssh-server`
 2. Navigate into user documents directory: 
     - `$ cd ~/Documents`
 3. Install git:
@@ -87,7 +74,7 @@ TODO: Need `sudo apt install -y openssh-server` ... maybe seperate .md for ssh s
 
 
 ## :boom: Usage
-TODO - maybe some gifs
+TODO - Maybe some gifs
 
 
 ### Image Formats You Can Use
@@ -99,6 +86,9 @@ TODO - maybe some gifs
 All images that are displayed in the picture frame must be stored in the `Images` directory of this project.
 Note that subdirectories in the "Images" directory will not be considered.
 
+#### Using The Web Interface
+- TODO
+
 #### Via Physical Flash/USB Drive
 - TODO
 
@@ -107,7 +97,6 @@ Note that subdirectories in the "Images" directory will not be considered.
 
 #### Remotely Via `ftp` Command
 - TODO
-
 
 
 ## :bust_in_silhouette: Author
