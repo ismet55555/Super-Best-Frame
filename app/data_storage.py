@@ -4,7 +4,7 @@
 # Definition off all flask app global variables
 # ---------------------------------------------------------
 
-# TODO: Create a DataStorage Object like a real program !!!
+# TODO: Create a DataStorage Object
 
 # # Current image inforamation
 # slideshow_current_img_filename = ''

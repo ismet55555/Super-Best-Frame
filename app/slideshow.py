@@ -28,16 +28,15 @@ stop_thread_flag = False
 process_communication_data = None
 
 
-def _process_communication_get_thread():
+def _process_communication_get_thread(wait_between_requests=0.200):
     """
-    TODO
+    Independent thread that collects all the web application user interactions and status, and
+    stopping flag.
+    :param wait_between_requests: The delay between http request to the web app API
     """
     # Define as global to this file
     global stop_thread_flag
     global process_communication_data
-
-    # Time between REST requests (seconds)
-    wait_between_requests = 0.200
 
     while not stop_thread_flag:
         # Retrieving information data from main process via REST
@@ -58,8 +57,6 @@ def _process_communication_get_thread():
         # Store information into dictionary
         process_communication_data = json.loads(response.text)
 
-        print(process_communication_data["controls"])
-
         # If successful, wait before trying again, else try again immediately
         if process_communication_data["success"]:
             time.sleep(wait_between_requests)
@@ -69,7 +66,9 @@ def _process_communication_get_thread():
 
 def slideshow_process(process_is_running):
     """
-    TODO
+    Main slideshow process that runs independently from the main script.
+    :param process_is_running: Process variable signaling if this independent process is running
+
     """
     # Supported image file extensions
     # TODO: Load from app/config/img_formats.yml

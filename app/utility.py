@@ -17,7 +17,7 @@ import imutils
 
 def get_screen_size():
     """
-    TODO
+    Get the pixel size of the screen on which the slideshow is running.
     """
     # Display number
     display_number = 0
@@ -44,8 +44,13 @@ def get_screen_size():
 
 def process_fit_image(image, screen_width_px, screen_height_px):
     """
-    TODO
+    Process the input image to fit a given screen size (landscape or portrait)
+    For fillers this will add black around the image if image doesn't exactly fit to screen.
+    :param image: OpenCV image object
+    :screen_width_px: Pixel width of the screen
+    :screen_height_px: Pixel height of the screen
     """
+    # Deterimine the screen aspect ratio
     screen_aspect_ratio = screen_width_px / screen_height_px
 
     if screen_aspect_ratio > 1:

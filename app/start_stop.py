@@ -4,7 +4,6 @@
 # Starting and Stopping of the Image Slideshow
 # ---------------------------------------------------------
 
-import ctypes
 import logging
 from multiprocessing import Process, Value
 
