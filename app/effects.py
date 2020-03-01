@@ -11,6 +11,7 @@ import numpy as np
 
 ###############################################################################
 
+
 def effect_none(img_end):
     """
     Image change transition effect: None
