@@ -5,12 +5,10 @@
 # ---------------------------------------------------------
 
 import logging
+from pprint import pprint  # For troubleshooting and debugging
 
 import cv2
 import numpy as np
-
-from pprint import pprint  # For troubleshooting and debugging
-
 
 ###############################################################################
 
@@ -19,7 +17,7 @@ def effect_none(img_end):
     """
     TODO
     """
-    cv2.imshow('Image', img_end)
+    cv2.imshow("Image", img_end)
 
 
 def effect_fade(img_begin, img_end, len=20, delay=5):
@@ -31,10 +29,12 @@ def effect_fade(img_begin, img_end, len=20, delay=5):
     while changing:
         for index in range(0, len):
             fade_in_radio = index / float(len)
-            mergedImageFrame = cv2.addWeighted(img_begin, 1 - fade_in_radio, img_end, fade_in_radio, 0)
-            cv2.imshow('Image', mergedImageFrame)
+            mergedImageFrame = cv2.addWeighted(
+                img_begin, 1 - fade_in_radio, img_end, fade_in_radio, 0
+            )
+            cv2.imshow("Image", mergedImageFrame)
             cv2.waitKey(delay)
-        cv2.imshow('Image', img_end)
+        cv2.imshow("Image", img_end)
         changing = False
 
 
@@ -56,7 +56,7 @@ def effect_slide(img_begin, img_end, direction, screen_width_px, screen_height_p
             yi = 0
             yf = screen_height_px
             img_cropped = img_combined[yi:yf, xi:xf]
-            cv2.imshow('Image', img_cropped)
+            cv2.imshow("Image", img_cropped)
             cv2.waitKey(delay)
         changing = False
 
@@ -77,7 +77,7 @@ def effect_zoom_out(img_begin, img_end, len=20, delay=1):
             yi = int(crop_percent * (img_height_init / 2))
             yf = int(img_height_init - (crop_percent * (img_height_init / 2)))
             img_cropped = img_begin[yi:yf, xi:xf]
-            cv2.imshow('Image', img_cropped)
+            cv2.imshow("Image", img_cropped)
             cv2.waitKey(delay)
-        cv2.imshow('Image', img_end)
+        cv2.imshow("Image", img_end)
         changing = False

@@ -6,13 +6,11 @@
 
 import logging
 import subprocess
+from math import floor
+from pprint import pprint  # For troubleshooting and debugging
 
 import cv2
 import imutils
-from math import floor
-
-from pprint import pprint  # For troubleshooting and debugging
-
 
 ###############################################################################
 
@@ -24,16 +22,22 @@ def get_screen_size():
     # Display number
     display_number = 0
     # Finding the size of the current screen
-    processes = subprocess.Popen(["xrandr | grep '*'"],stdout=subprocess.PIPE, shell=True).stdout.read().decode('utf-8').strip().split(' ')
+    processes = (
+        subprocess.Popen(["xrandr | grep '*'"], stdout=subprocess.PIPE, shell=True)
+        .stdout.read()
+        .decode("utf-8")
+        .strip()
+        .split(" ")
+    )
     # TODO: Detect a return of no display
     # Remove blanks and new line characters
-    processes = [i for i in processes if (i and i != '\n')] 
+    processes = [i for i in processes if (i and i != "\n")]
     # Only find items containing "x" and get the first listed
     # TODO: Find a way to know where images are displayed
-    processes = [i for i in processes if 'x' in i][display_number]
+    processes = [i for i in processes if "x" in i][display_number]
     # Split into width and height
-    width_px = int(processes.split('x')[0])
-    height_px = int(processes.split('x')[1])
+    width_px = int(processes.split("x")[0])
+    height_px = int(processes.split("x")[1])
     # TODO: Error handling
     return width_px, height_px
 
@@ -68,8 +72,10 @@ def process_fit_image(image, screen_width_px, screen_height_px):
         # Portrait
         bottom = img_fill_border_begin
         top = img_fill_border_begin
-        
+
     # Add the border filler to the image
-    image = cv2.copyMakeBorder(image, top=top, bottom=bottom, left=left, right=right, borderType=cv2.BORDER_CONSTANT)
+    image = cv2.copyMakeBorder(
+        image, top=top, bottom=bottom, left=left, right=right, borderType=cv2.BORDER_CONSTANT
+    )
 
     return image

@@ -2,8 +2,7 @@
 
 echo
 
-# Install required libraries / packages
-# TODO
+# TODO: Install system required libraries / packages for openCV
 
 # Check to see if in the right base directory
 CURRENT_BASE_DIR=${PWD##*/}

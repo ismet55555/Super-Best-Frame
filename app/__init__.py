@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# isort:skip_file
 
 # ---------------------------------------------------------
 # Initialization off all flask app components
@@ -23,4 +24,3 @@ from app import data_storage
 from app import effects  # Image transition effects
 from app import utility  # Useful and custom functions
 from app import slideshow  # main slideshow thread (runs in background)
-
