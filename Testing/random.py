@@ -34,10 +34,6 @@ def thread():
 
     thread_started = False
 
-
-
-
-
 loops = 1
 while True:
 
@@ -46,7 +42,6 @@ while True:
         thread = threading.Thread(target=thread)
         thread_started = True
         thread.start()
-
 
         # End after 3 times
         loops += 1

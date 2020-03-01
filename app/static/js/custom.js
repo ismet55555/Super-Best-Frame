@@ -1,5 +1,5 @@
 // Create a XMLHttpRequest object to handle REST calls
-// TODO: Switch to fetch API
+// TODO: Switch to fetch API!
 let request = new XMLHttpRequest();  
 
 

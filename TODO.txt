@@ -8,6 +8,11 @@ Options:
     Adding fancy Frames around image
     Text on screen
 
+Add things to image?
+    - Time - Checkbox on UI
+    - Date - Checkbox on UI
+    - Messages - Enter in UI
+
 Download images from google drive
 
 In README.md add how to start remotely with screen or nohub or whatever
