@@ -1,5 +1,7 @@
 TODO:
 
+Switch javascript HTTPRequest library to fetchAPI
+
 Options:
     Time between images
     Sounds
