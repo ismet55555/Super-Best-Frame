@@ -2,9 +2,6 @@
 
 echo
 
-# TODO: Check for and Install system required libraries / packages for openCV
-#          sudo apt -y install python3-opencv
-
 # Check to see if in the right base directory
 CURRENT_BASE_DIR=${PWD##*/}
 if [ $CURRENT_BASE_DIR = "Picture-Frame" ]
@@ -23,6 +20,18 @@ then
         source env/bin/activate                      # Activate virtual enviroment
         echo "[Picture-Frame] - Installing all required python packages ..."
         pip3 install -U -r requirements.txt     # Install all required packages for virtual environment
+    fi
+
+    # Setting up OpenCV
+    # python3 -c "import cv2; print(cv2.__version__)"
+    OPENCV_VER=$(python3 -c "import cv2; print(cv2.__version__)" 2> /dev/null)
+    if [ $? -eq 0 ]; then
+        echo "[Picture-Frame] - Open CV is already installed on this system"
+        echo "[Picture-Frame] - Open CV version: ${OPENCV_VER}"
+    else
+        echo "[Picture-Frame] - Open CV is not installed on this sytem. Installing"
+        sudo apt -y update
+        sudo apt -y install python3-opencv
     fi
 
     echo "[Picture-Frame] - Setting envirmental variable 'DISPLAY' to 0 ..."

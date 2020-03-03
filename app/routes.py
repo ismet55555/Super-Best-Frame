@@ -13,11 +13,9 @@ from app import api  # Import the app (Controller)
 from app import start_stop  # Starts and stops slideshow
 from app import data_storage
 
-    jsonify,
-    render_template,
-    request,
-    send_from_directory,
-)
+from flask import jsonify, send_from_directory
+from flask import render_template, request
+
 
 
 # Flask application base directory (CHECK ME)
