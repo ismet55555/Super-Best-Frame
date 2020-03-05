@@ -35,13 +35,14 @@ body {
 .btn-controls {
   width: 100%;
 }
-/* .btn {
+.btn {
   text-transform: none;
-} */
+}
 
 
 .img-preview {
     width: 100%;
+    height: auto;
     border: 5px;
     border-color: black;
 }
@@ -51,6 +52,11 @@ body {
 
 /* ========================================================= */
 /* 404 webpage styling */
+#content-404 {
+    text-align: center;
+    justify-content: center;
+}
+
 #ey-yo-foo {
   margin-top: 50px;
   font-size: 20px;

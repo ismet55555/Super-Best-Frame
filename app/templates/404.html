@@ -1,31 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <!-- Style / CSS Files  -->
-    <!-- Bootstrap Here -->
-    <!-- Custom Style File  -->
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='style.css') }}"
-    />
-    <!-- Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Raleway&display=swap"
-      rel="stylesheet"
-    />
-    <!-- Setting page title -->
-    <title>404</title>
-  </head>
-  <body>
-    404 page .... get back to safety dude...
+{% extends "base.html" %} {% block content %}
 
-    <!-- Imported Scripts Here  -->
-    <script src="{{ url_for('static', filename='custom.js')}}"></script>
-  </body>
-</html>
+<div id="content-404">
+
+  <div class="row">
+    <div id="ey-yo-foo" class="col">
+      <div id="error_message">
+        Ey yo foo ... you's in the wrooooong place dawg ...<br />Ain't
+        nothin' round hrrr
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div id="fo-oh-fo" class="col">
+      <div id="error_message">Fo-Oh-Fo!</div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div id="error-logo" class="col">
+      <img src="../static/images/dead.png" height="120px" alt="Dead Face" />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col btn-homepage">
+      <a href="/index">
+        <button
+          class="btn-controls waves-effect waves-light btn green lighten-1 z-depth-3"
+          id="btn-slideshow-on"
+          title="Turns slideshow on"
+          >Head back to tha crib
+        </button>
+      </a>
+    </div>
+  </div>
+
+
+</div>
+
+{% endblock %}

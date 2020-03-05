@@ -2,6 +2,8 @@ TODO:
 
 Switch javascript HTTPRequest library to fetchAPI
 
+Add a Dockerfile for containerized deployment
+
 Options:
     Time between images
     Sounds
