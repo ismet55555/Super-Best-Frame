@@ -27,25 +27,29 @@
   </head>
 
   <body>
-    <div>
-      <nav
-        class="navbar sticky navbar-expand-lg navbar-light d-flex justify-content-center"
-        style="background-color: #e3f2fd00;"
-      >
-        <a id="logo" class="navbar-brand" href="/index">
-          <img src="{{ url_for('static', filename='images/logo.png') }}" height="50em" alt="TODO" />
-        </a>
+    <div class="container">
+     
+      <div>
+        <nav
+          class="navbar sticky navbar-expand-lg navbar-light d-flex justify-content-center z-depth-0"
+          style="background-color: #e3f2fd00;"
+        >
+          <a id="logo" class="navbar-brand" href="/index">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" height="50em" alt="TODO" />
+          </a>
 
-      </nav>
+        </nav>
+      </div>
+
+      <hr />
+
+      {% block content %}{% endblock %}
+
+      <hr />
+
+      <div id="version">Cool Heart Media | V0.20</div>
+
     </div>
-
-    <hr />
-
-    {% block content %}{% endblock %}
-
-    <hr />
-
-    <div id="version">Cool Heart Media | V0.20</div>
 
     <!-- Imported Scripts Here  CHECK IF LAST OR FIRST -->  
     <script src="{{ url_for('static', filename='js/materialize.min.js')}}"></script>

@@ -33,13 +33,13 @@ if __name__ == '__main__':
     logging.info('Starting flask server application (picture-frame) ...  ')
     logging.info('Web application port:  5555')
 
-    # # NOTE: DEVELOPMENT: Using default flask server
-    # logging.info('NOTE: Using default flask server (DEVELOPMENT ONLY)')
-    # api.run(host='0.0.0.0', port=5555)
+    # NOTE: DEVELOPMENT: Using default flask server
+    logging.info('NOTE: Using default flask server (DEVELOPMENT ONLY)')
+    api.run(host='0.0.0.0', port=5555)
 
-    # NOTE: PRODUCTION: Using gevent standalone Web Server Gateway Interface (WSGI) container
-    logging.info('NOTE: Using gevent standalone Web Server Gateway Interface (WSGI) server for production deployment\n\n')
-    http_server = WSGIServer(('', 5555), api, log=logging)
-    http_server.serve_forever()
+    # # NOTE: PRODUCTION: Using gevent standalone Web Server Gateway Interface (WSGI) container
+    # logging.info('NOTE: Using gevent standalone Web Server Gateway Interface (WSGI) server for production deployment\n\n')
+    # http_server = WSGIServer(('', 5555), api, log=logging)
+    # http_server.serve_forever()
 
 # NOTE: Enviromental variables and settings are set in .flaskenv
