@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "/home/ismet/Projects/Picture-Frame/env/bin/python3",
+    "python.pythonPath": "/Users/ismethandzic/Projects/Super-Best-Frame/env/bin/python3",
     "python.linting.flake8Enabled": true,
     "python.linting.enabled": true
 }

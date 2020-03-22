@@ -4,21 +4,21 @@ echo
 
 # Check to see if in the right base directory
 CURRENT_BASE_DIR=${PWD##*/}
-if [ $CURRENT_BASE_DIR = "Picture-Frame" ]
+if [ $CURRENT_BASE_DIR = "Super-Best-Frame" ]
 then
-    # Virtual enviromnment for flask application
-    echo "[Picture-Frame] - Checking if virtual enviroment is setup ..."
+    # Virtual enviromnment for flask applications
+    echo "[Super-Best-Frame] - Checking if virtual enviroment is setup ..."
     if [ -d ./env ]   # Check to see if virtual enviroment exists in current working directory
     then
-        echo "[Picture-Frame] - Virtual environment already exists."
-        echo "[Picture-Frame] - Activating virtual enviroment ..."
+        echo "[Super-Best-Frame] - Virtual environment already exists."
+        echo "[Super-Best-Frame] - Activating virtual enviroment ..."
         source env/bin/activate                      # Activate virtual enviroment
     else
-        echo "[Picture-Frame] - Creating a virtual environment for web application ..."
+        echo "[Super-Best-Frame] - Creating a virtual environment for web application ..."
         python3 -m venv env               # Creating the virtual environment
-        echo "[Picture-Frame] - Activating virtual enviroment ..."
+        echo "[Super-Best-Frame] - Activating virtual enviroment ..."
         source env/bin/activate                      # Activate virtual enviroment
-        echo "[Picture-Frame] - Installing all required python packages ..."
+        echo "[Super-Best-Frame] - Installing all required python packages ..."
         pip3 install -U -r requirements.txt     # Install all required packages for virtual environment
     fi
 
@@ -26,27 +26,27 @@ then
     # python3 -c "import cv2; print(cv2.__version__)"
     OPENCV_VER=$(python3 -c "import cv2; print(cv2.__version__)" 2> /dev/null)
     if [ $? -eq 0 ]; then
-        echo "[Picture-Frame] - Open CV is already installed on this system"
-        echo "[Picture-Frame] - Open CV version: ${OPENCV_VER}"
+        echo "[Super-Best-Frame] - Open CV is already installed on this system"
+        echo "[Super-Best-Frame] - Open CV version: ${OPENCV_VER}"
     else
-        echo "[Picture-Frame] - Open CV is not installed on this sytem. Installing"
+        echo "[Super-Best-Frame] - Open CV is not installed on this sytem. Installing"
         sudo apt -y update
         sudo apt -y install python3-opencv
     fi
 
-    echo "[Picture-Frame] - Setting envirmental variable 'DISPLAY' to 0 ..."
+    echo "[Super-Best-Frame] - Setting envirmental variable 'DISPLAY' to 0 ..."
     export DISPLAY=:0
 
     # Running the flask application
-    echo "[Picture-Frame] - Starting web application ..."
+    echo "[Super-Best-Frame] - Starting web application ..."
     echo
     python3 main.py
     echo
-    echo "[Picture-Frame] - Web application has stopped."
+    echo "[Super-Best-Frame] - Web application has stopped."
 else
     # Current directory is not correct
     echo
-    echo "[Picture-Frame] - CRITICAL! - Application was not able to start up!"
-    echo "[Picture-Frame] - CRITICAL! - Shell script not executed within the correct directory."
+    echo "[Super-Best-Frame] - CRITICAL! - Application was not able to start up!"
+    echo "[Super-Best-Frame] - CRITICAL! - Shell script not executed within the correct directory."
     echo
 fi
