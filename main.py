@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # ---------------------------------------------------------
-# Picture-Frame: Main flask application entry point
+# Super-Best-Frame: Main flask application entry point
 # Run with command: python3 main.py
 # ---------------------------------------------------------
 
@@ -22,11 +22,11 @@ if __name__ == '__main__':
     stdout_handler = logging.StreamHandler(sys.stdout)
     # Defining the logger
     logger = logging.basicConfig(level=logging.INFO,
-                        format='[Picture-Frame] - [%(asctime)s] - %(levelname)-10s - %(message)s',
+                        format='[Super-Best-Frame] - [%(asctime)s] - %(levelname)-10s - %(message)s',
                         datefmt='%d-%b-%y %H:%M:%S',
                         handlers=[file_handler, stdout_handler])
     # Applying color to the output logs
-    coloredlogs.install(fmt='[Picture-Frame] - [%(asctime)s] - %(levelname)-10s - %(message)s',
+    coloredlogs.install(fmt='[Super-Best-Frame] - [%(asctime)s] - %(levelname)-10s - %(message)s',
                         datefmt='%d-%b-%y %H:%M:%S',
                         logger=logger)
 

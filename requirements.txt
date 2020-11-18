@@ -11,7 +11,7 @@ imutils
 
 # Formatting and Basic Tools
 coloredlogs
-pkg-resources
+setuptools
 PyYAML
 requests
 pylint

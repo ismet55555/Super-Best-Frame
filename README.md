@@ -62,9 +62,9 @@ I have not tried it out on `Microsoft WSL (Windows Subsystem for Linux)`, but ma
     - `$ git config --global user.name "Your Name Here"`
     - `$ git config --global user.email "your.email@here.com"`
 5. Clone this public git repo form github:
-    - `$ git clone git@github.com:ismet55555/Picture-Frame.git`
+    - `$ git clone git@github.com:ismet55555/Super-Best-Frame.git`
 6. Change directory into cloned directory:
-    - `$ cd Picture-Frame`
+    - `$ cd Super-Best-Frame`
 7. Install OpenCV system dependencies:
     - `$ sudo apt -y install python3-opencv`
 8. Run the start script
