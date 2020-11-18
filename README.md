@@ -1,3 +1,5 @@
+<p align="center"><img width="150" alt="portfolio_view" src="misc/super-best-frame.png"></p>
+
 <h1 align="center">Super Best Frame :bowtie:</h1>
 
 This is a picture frame slideshow for running on linux systems that is connected to a display/monitor. These linux systems may include Raspian, Ubuntu, Mint, or even WSL (Windows Subsystem for Linux).
@@ -12,18 +14,20 @@ You can then control the picture frame slideshow's behavior using a simple brows
 
 ## :eyeglasses: Overview
 
-* [Compatibility](#thumbsup-compatibility)
-    * [Minimum System Requirements](#minimum-system-requirements)
-    * [Verified Platforms](#verified-platforms)
-* [Installing and Setup](#rocket-installing-and-setup)
-* [Usage](#boom-usage)
-    * [Image Formats You Can Use](#image-formats-you-can-use)
-    * [Adding Images](#adding-images)
-        * [Via Physical Flash/USB Drive](#via-physical-flashusb-drive)
-        * [Remotely Via scp Command](#remotely-via-scp-command)
-        * [Remotely Via ftp Command](#remotely-via-ftp-command)
-* [Author](#bust_in_silhouette-author)
-* [Licence](#licence)
+- [:eyeglasses: Overview](#eyeglasses-overview)
+- [:thumbsup: Compatibility](#thumbsup-compatibility)
+  - [Minimum System Requirements](#minimum-system-requirements)
+  - [Verified Platforms](#verified-platforms)
+- [:rocket: Installing and Setup](#rocket-installing-and-setup)
+- [:boom: Usage](#boom-usage)
+  - [Image Formats You Can Use](#image-formats-you-can-use)
+  - [Adding Images](#adding-images)
+    - [Using The Web Interface](#using-the-web-interface)
+    - [Via Physical Flash/USB Drive](#via-physical-flashusb-drive)
+    - [Remotely Via `scp` Command](#remotely-via-scp-command)
+    - [Remotely Via `ftp` Command](#remotely-via-ftp-command)
+- [:bust_in_silhouette: Author](#bust_in_silhouette-author)
+- [Licence](#licence)
 
 
 ## :thumbsup: Compatibility
