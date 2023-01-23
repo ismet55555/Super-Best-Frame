@@ -40,19 +40,6 @@ The following are the minimum system requirments where this application will wor
 - __Disk Storage__: 400 MB + Images
 
 
-### Verified Platforms
-This program has been tested on a limited number of different systems, this is what I know so far:
-
-|           Works Fine           |    Will Not Work    |
-|:------------------------------:|:-------------------:|
-| Raspberry Pi 3b+ *(Raspbian)*  | Raspberry Pi Zero W |
-| Raspberry Pi 4 *(Raspbian)*    |                     |
-| Atomic Pi *(Lubuntu 18.04)*    |                     |
-| Ubuntu 16.04 and up            |                     |
-
-I have not tried it out on `Microsoft WSL (Windows Subsystem for Linux)`, but may work on it as well.
-
-
 
 ## :rocket: Installing and Setup
 1. *[If on remote computer]* Enter remote linux device using `ssh`:
